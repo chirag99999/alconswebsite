@@ -1287,7 +1287,7 @@
       <p class="reveal">A cinematic architecture sequence that moves with your scroll — from first reveal to the final frame, smoothly and deliberately.</p>
     </div>
     <div class="model-stage reveal" id="modelStage">
-      <canvas class="model-canvas" id="walkthroughCanvas" aria-label="Scroll-controlled architectural walkthrough"></canvas>
+      <video id="walkthroughVideo" class="model-video" muted playsinline preload="metadata" src="https://assets.mixkit.co/videos/preview/mixkit-modern-architecture-building-facade-41551-large.mp4" aria-label="Scroll-controlled architectural walkthrough"></video>
       <div class="model-video-sheen"></div>
       <div class="model-chip chip-a"><b id="videoProgress">00%</b>Scroll progress</div>
       <div class="model-tour"><i></i>Scroll to reveal</div>
@@ -1953,25 +1953,11 @@ gsap.utils.toArray('.service-row').forEach(row=>{
 /* ---------------- scroll-scrub walkthrough video ---------------- */
 (function(){
   const section = document.querySelector('.model-section');
-  const canvas = document.getElementById('walkthroughCanvas');
-  if(!section || !canvas) return;
+  const video = document.getElementById('walkthroughVideo');
+  if(!section || !video) return;
 
   const fill = document.getElementById('modelScrubFill');
   const progressLabel = document.getElementById('videoProgress');
-  const context = canvas.getContext('2d', {alpha:false});
-  
-  // High-performance online CDN video stream for scroll walkthrough
-  const videoUrl = 'https://assets.mixkit.co/videos/preview/mixkit-modern-architecture-building-facade-41551-large.mp4';
-  const video = document.createElement('video');
-  video.src = videoUrl;
-  video.crossOrigin = 'anonymous';
-  video.muted = true;
-  video.playsInline = true;
-  video.preload = 'auto';
-
-  let videoLoaded = false;
-  let canvasWidth = 0;
-  let canvasHeight = 0;
 
   function setProgress(pct){
     const clamped = Math.max(0, Math.min(1, pct));
@@ -1979,37 +1965,8 @@ gsap.utils.toArray('.service-row').forEach(row=>{
     if(progressLabel) progressLabel.textContent = String(Math.round(clamped * 100)).padStart(2,'0') + '%';
   }
 
-  function resizeCanvas(){
-    const rect = canvas.getBoundingClientRect();
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    canvasWidth = Math.max(1, Math.round(rect.width * dpr));
-    canvasHeight = Math.max(1, Math.round(rect.height * dpr));
-    if(canvas.width !== canvasWidth || canvas.height !== canvasHeight){
-      canvas.width = canvasWidth;
-      canvas.height = canvasHeight;
-      if(videoLoaded) drawVideoFrame();
-    }
-  }
-
-  function drawVideoFrame(){
-    if(!canvasWidth || !canvasHeight || !video.videoWidth) return;
-    const scale = Math.max(canvasWidth / video.videoWidth, canvasHeight / video.videoHeight);
-    const width = video.videoWidth * scale;
-    const height = video.videoHeight * scale;
-    const x = (canvasWidth - width) / 2;
-    const y = (canvasHeight - height) / 2;
-    context.fillStyle = '#0b1111';
-    context.fillRect(0, 0, canvasWidth, canvasHeight);
-    context.drawImage(video, x, y, width, height);
-  }
-
-  video.addEventListener('loadeddata', () => {
-    videoLoaded = true;
-    resizeCanvas();
-    drawVideoFrame();
-  });
-
-  window.addEventListener('resize', resizeCanvas, {passive:true});
+  video.pause();
+  video.currentTime = 0;
 
   ScrollTrigger.create({
     trigger: section,
@@ -2021,9 +1978,8 @@ gsap.utils.toArray('.service-row').forEach(row=>{
     invalidateOnRefresh: true,
     onUpdate: self => {
       setProgress(self.progress);
-      if(videoLoaded && video.duration){
+      if(video.duration && !isNaN(video.duration)){
         video.currentTime = self.progress * video.duration;
-        drawVideoFrame();
       }
     },
     onLeaveBack: () => setProgress(0),
