@@ -1,11 +1,7 @@
-.antigravity/
-.gemini/
-node_modules/
-.next/
-.vercel/
-
-.vercel
 alcons-astro/
+node_modules/
 package-lock.json
 tools/static-server.js
 tools/verify-hero-carousel.js
+verify-*.png
+Script.docx
