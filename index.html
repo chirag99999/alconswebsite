@@ -249,6 +249,156 @@
       box-shadow: 0 0 0 6px rgba(74, 255, 252, .35);
     }
 
+    /* ---------- mobile menu button & overlay ---------- */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--ink);
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      z-index: 502;
+      transition: transform .3s var(--ease), background-color .3s var(--ease);
+    }
+
+    .nav-toggle .bar {
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: #FFFFFF;
+      border-radius: 2px;
+      transition: transform .35s var(--ease), opacity .35s var(--ease);
+      transform-origin: center;
+    }
+
+    .nav-toggle.is-open .bar-1 {
+      transform: translateY(3.5px) rotate(45deg);
+    }
+
+    .nav-toggle.is-open .bar-2 {
+      transform: translateY(-3.5px) rotate(-45deg);
+    }
+
+    .nav-mobile-overlay {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      z-index: 490;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity .4s var(--ease), visibility .4s var(--ease);
+      display: flex;
+      flex-direction: column;
+      padding: 94px 6vw 40px 6vw;
+      overflow-y: auto;
+    }
+
+    .nav-mobile-overlay.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .nav-mobile-container {
+      max-width: 540px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100%;
+      gap: 32px;
+    }
+
+    .nav-mobile-header {
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+    }
+
+    .nav-mobile-tag {
+      font-size: 11px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      font-weight: 600;
+    }
+
+    .nav-mobile-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .nav-mobile-links li a {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(26px, 7vw, 40px);
+      font-weight: 300;
+      color: var(--ink);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 6px 0;
+      transition: color .3s var(--ease), transform .3s var(--ease);
+    }
+
+    .nav-mobile-links li a span {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--cyan-deep);
+      letter-spacing: .1em;
+    }
+
+    .nav-mobile-links li a.active,
+    .nav-mobile-links li a:hover {
+      color: var(--cyan-deep);
+      transform: translateX(6px);
+    }
+
+    .nav-mobile-footer {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(17, 17, 17, 0.08);
+    }
+
+    .w-full {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .nav-mobile-info {
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+
+    .nav-mobile-info strong {
+      color: var(--ink);
+    }
+
     /* ---------- buttons ---------- */
     .btn {
       position: relative;
@@ -360,11 +510,13 @@
       isolation: isolate;
     }
 
-    .hero-photo-wrap img {
+    .hero-photo-wrap>img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transform: scale(1.12);
+      transition: opacity .75s var(--ease), transform 1.15s var(--ease), filter .75s var(--ease);
+      will-change: opacity, transform;
     }
 
     .hero-photo-wrap::after {
@@ -386,14 +538,53 @@
       max-width: 70%;
     }
 
-    .hero-pills span {
+    .hero-pills button {
+      position: relative;
       padding: 9px 16px;
       border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, .54);
       background: rgba(255, 255, 255, .9);
       backdrop-filter: blur(8px);
       font-size: 12px;
       font-weight: 600;
+      font-family: 'Inter', sans-serif;
       color: var(--ink);
+      cursor: none;
+      overflow: hidden;
+      transition: background .45s var(--ease), color .45s var(--ease), border-color .45s var(--ease), transform .45s var(--ease);
+    }
+
+    .hero-pills button::after {
+      content: '';
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 6px;
+      height: 1px;
+      background: var(--cyan-deep);
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+
+    .hero-pills button.active {
+      background: var(--ink);
+      color: #fff;
+      border-color: rgba(74, 255, 252, .52);
+      transform: translateY(-2px);
+    }
+
+    .hero-pills button.active::after {
+      animation: heroTabProgress 3s linear forwards;
+    }
+
+    .hero-pills.is-paused button.active::after {
+      animation: none;
+      transform: scaleX(1);
+    }
+
+    @keyframes heroTabProgress {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
     }
 
     .hero-headline {
@@ -2189,6 +2380,28 @@
 
     @media(max-width:980px) {
 
+      .nav-links,
+      .nav-pill,
+      .nav-cta {
+        display: none !important;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+      .nav {
+        top: 14px;
+        width: calc(100vw - 28px);
+        height: 60px;
+        padding: 0 10px 0 20px;
+        background: rgba(255, 255, 255, .88);
+        backdrop-filter: blur(18px) saturate(160%);
+        -webkit-backdrop-filter: blur(18px) saturate(160%);
+        border-color: rgba(17, 17, 17, .1);
+        box-shadow: 0 10px 30px rgba(17, 17, 17, .08);
+      }
+
       .about-grid,
       .contact-grid,
       .compare,
@@ -2371,29 +2584,13 @@
 
       .nav {
         top: 12px;
-        width: calc(100vw - 24px);
-        height: 58px;
-        padding: 0 8px 0 18px;
-        background: rgba(255, 255, 255, .82);
-        backdrop-filter: blur(16px) saturate(150%);
-        -webkit-backdrop-filter: blur(16px) saturate(150%);
-        border-color: rgba(17, 17, 17, .08);
-        box-shadow: 0 10px 28px rgba(17, 17, 17, .07);
+        width: calc(100vw - 20px);
+        height: 56px;
+        padding: 0 10px 0 16px;
       }
 
       .logo {
         font-size: 18px;
-      }
-
-      .nav-links,
-      .nav-pill {
-        display: none;
-      }
-
-      .nav-cta {
-        padding: 10px 14px;
-        font-size: 11.5px;
-        white-space: nowrap;
       }
 
       .btn {
@@ -2444,7 +2641,7 @@
         gap: 6px;
       }
 
-      .hero-pills span {
+      .hero-pills button {
         padding: 7px 10px;
         font-size: 10.5px;
       }
@@ -2992,7 +3189,7 @@
   </style>
 </head>
 
-<body>
+<body data-page="home">
 
   <div id="preloader">
     <div class="pl-mark">
@@ -3013,17 +3210,48 @@
 
   <!-- NAV -->
   <nav class="nav" id="nav">
-    <a href="#home" class="logo">ALCONS<span>.</span></a>
+    <a href="index.html" class="logo" data-page-link="home">ALCONS<span>.</span></a>
     <div class="nav-links" id="navLinks">
       <div class="nav-pill" id="navPill"></div>
-      <a href="#services" class="hoverable">Services</a>
-      <a href="#portfolio" class="hoverable">Portfolio</a>
-      <a href="#about" class="hoverable">About</a>
-      <a href="#pricing" class="hoverable">Pricing</a>
-      <a href="#contact" class="hoverable">Contact</a>
+      <a href="services.html" class="hoverable" data-page-link="services">Services</a>
+      <a href="portfolio.html" class="hoverable" data-page-link="portfolio">Portfolio</a>
+      <a href="about.html" class="hoverable" data-page-link="about">About</a>
+      <a href="pricing.html" class="hoverable" data-page-link="pricing">Pricing</a>
+      <a href="contact.html" class="hoverable" data-page-link="contact">Contact</a>
     </div>
-    <a href="#contact" class="nav-cta hoverable">Book Consultation</a>
+    <div class="nav-actions">
+      <a href="contact.html" class="nav-cta hoverable">Book Consultation</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
+        <span class="bar bar-1"></span>
+        <span class="bar bar-2"></span>
+      </button>
+    </div>
   </nav>
+
+  <!-- MOBILE OVERLAY MENU -->
+  <div class="nav-mobile-overlay" id="navMobileOverlay">
+    <div class="nav-mobile-container">
+      <div class="nav-mobile-header">
+        <span class="nav-mobile-tag">Navigation</span>
+      </div>
+      <ul class="nav-mobile-links">
+        <li><a href="index.html" data-page-link="home"><span>01</span> Home</a></li>
+        <li><a href="services.html" data-page-link="services"><span>02</span> Services</a></li>
+        <li><a href="portfolio.html" data-page-link="portfolio"><span>03</span> Portfolio</a></li>
+        <li><a href="about.html" data-page-link="about"><span>04</span> About</a></li>
+        <li><a href="pricing.html" data-page-link="pricing"><span>05</span> Pricing</a></li>
+        <li><a href="contact.html" data-page-link="contact"><span>06</span> Contact</a></li>
+      </ul>
+      <div class="nav-mobile-footer">
+        <a href="contact.html" class="btn solid hoverable w-full">Book Consultation <span class="arrow"><svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></a>
+        <div class="nav-mobile-info">
+          <div><strong>ALCONS Studio</strong></div>
+          <div>Municipality Market Complex, Balasore, Odisha</div>
+          <div>Mon–Sat: 9:15 AM – 8:00 PM</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- HERO -->
   <section class="hero" id="home">
@@ -3034,19 +3262,20 @@
       <h1 class="hero-word serif reveal">Alcons<br><em>Living</em></h1>
 
       <div class="hero-photo-wrap reveal" id="heroPhoto">
-        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=75"
+        <img id="heroSlideImage" src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=75"
           alt="Modern architecture at dusk">
 
         <div class="hero-pills">
-          <span class="hoverable">Architecture</span>
-          <span class="hoverable">Interior</span>
-          <span class="hoverable">Landscape</span>
-          <span class="hoverable">Construction</span>
+          <button class="hoverable active" type="button" data-slide="0">Architecture</button>
+          <button class="hoverable" type="button" data-slide="1">Interior</button>
+          <button class="hoverable" type="button" data-slide="2">Landscape</button>
+          <button class="hoverable" type="button" data-slide="3">Construction</button>
+          <button class="hoverable" type="button" data-slide="4">Consultancy</button>
         </div>
 
         <div class="hero-headline">
-          <div class="eyebrow">Featured Practice</div>
-          <p>Buildings that hold their form for a hundred years — from the first blueprint line to final handover, one
+          <div class="eyebrow" id="heroSlideEyebrow">Featured Practice</div>
+          <p id="heroSlideDescription">Buildings that hold their form for a hundred years — from the first blueprint line to final handover, one
             continuous act of precision.</p>
         </div>
 
@@ -3060,12 +3289,12 @@
         </div>
 
         <div class="float-card fc-project hoverable" id="fcProject">
-          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=200&q=70"
+          <img id="heroProjectImage" src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=200&q=70"
             alt="Crescent Bay Residence">
           <div>
             <div class="lbl">Featured Project</div>
-            <h5 class="serif">Crescent Bay Residence</h5>
-            <div class="px">₹4.2 Cr · Modern Villa</div>
+            <h5 class="serif" id="heroProjectTitle">Crescent Bay Residence</h5>
+            <div class="px" id="heroProjectMeta">₹4.2 Cr · Modern Villa</div>
           </div>
         </div>
 
@@ -3091,25 +3320,6 @@
       <div class="stat reveal"><b class="counter" data-to="14">0</b><span>Years in practice</span></div>
       <div class="stat reveal"><b class="counter" data-to="36">0</b><span>Design awards</span></div>
       <div class="stat reveal"><b class="counter" data-to="98">0</b><span>% client retention</span></div>
-    </div>
-  </section>
-
-  <!-- 3D INTERACTIVE MODEL -->
-  <section class="model-section">
-    <div class="wrap">
-      <div class="model-head">
-        <h2 class="serif reveal">Scroll through the <em>walkthrough.</em></h2>
-        <p class="reveal">A cinematic architecture sequence that moves with your scroll — from first reveal to the final
-          frame, smoothly and deliberately.</p>
-      </div>
-      <div class="model-stage reveal" id="modelStage">
-        <video id="walkthroughVideo" class="model-video" muted playsinline preload="auto"
-          src="https://res.cloudinary.com/rrw2erxi/video/upload/v1786155514/Architectural_project_video_gene__202608080553_pgmn7x.webm" aria-label="Scroll-controlled architectural walkthrough"></video>
-        <div class="model-video-sheen"></div>
-        <div class="model-chip chip-a"><b id="videoProgress">00%</b>Scroll progress</div>
-        <div class="model-tour"><i></i>Scroll to reveal</div>
-        <div class="model-scrub"><i id="modelScrubFill"></i></div>
-      </div>
     </div>
   </section>
 
@@ -3919,22 +4129,61 @@
       nav.classList.toggle('scrolled', window.scrollY > 40);
     });
 
+    /* ---------------- mobile menu toggle ---------------- */
+    const navToggle = document.getElementById('navToggle');
+    const navMobileOverlay = document.getElementById('navMobileOverlay');
+
+    function toggleMobileMenu() {
+      if (!navToggle || !navMobileOverlay) return;
+      const isOpen = navToggle.classList.toggle('is-open');
+      navMobileOverlay.classList.toggle('is-open', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    }
+
+    if (navToggle && navMobileOverlay) {
+      navToggle.addEventListener('click', toggleMobileMenu);
+
+      navMobileOverlay.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (navToggle.classList.contains('is-open')) {
+            toggleMobileMenu();
+          }
+        });
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navToggle.classList.contains('is-open')) {
+          toggleMobileMenu();
+        }
+      });
+    }
+
     /* nav pill slide */
     const navLinks = document.querySelectorAll('#navLinks a');
     const navPill = document.getElementById('navPill');
     function movePill(el) {
+      if (!navPill || !el) return;
       navPill.style.width = el.offsetWidth + 'px';
       navPill.style.transform = `translateX(${el.offsetLeft}px)`;
     }
     navLinks.forEach(a => {
       a.addEventListener('mouseenter', () => movePill(a));
     });
-    document.getElementById('navLinks').addEventListener('mouseleave', () => {
-      const active = document.querySelector('#navLinks a.active');
-      if (active) movePill(active); else { navPill.style.width = '0px'; }
-    });
-    navLinks[0].classList.add('active');
-    window.addEventListener('load', () => movePill(navLinks[0]));
+    const navLinksParent = document.getElementById('navLinks');
+    if (navLinksParent) {
+      navLinksParent.addEventListener('mouseleave', () => {
+        const active = document.querySelector('#navLinks a.active');
+        if (active) movePill(active); else if (navPill) { navPill.style.width = '0px'; }
+      });
+    }
+    const currentPage = document.body.dataset.page || 'home';
+    const activeNav = currentPage === 'home' ? null : document.querySelector(`#navLinks a[data-page-link="${currentPage}"]`);
+    if (activeNav) activeNav.classList.add('active');
+    if (currentPage && navMobileOverlay) {
+      const mobileActive = navMobileOverlay.querySelector(`a[data-page-link="${currentPage}"]`);
+      if (mobileActive) mobileActive.classList.add('active');
+    }
+    window.addEventListener('load', () => { if (activeNav) movePill(activeNav); });
 
     const sections = document.querySelectorAll('section[id]');
     ScrollTrigger.batch(sections, {
@@ -4050,53 +4299,6 @@
       row.addEventListener('mouseleave', () => gsap.to(row.querySelector('.service-num'), { scale: 1, color: '#6B6E70', duration: .35, ease: 'power2.out' }));
     });
 
-    /* ---------------- scroll-scrub walkthrough video ---------------- */
-    (function () {
-      const section = document.querySelector('.model-section');
-      const video = document.getElementById('walkthroughVideo');
-      if (!section || !video) return;
-
-      const fill = document.getElementById('modelScrubFill');
-      const progressLabel = document.getElementById('videoProgress');
-
-      function setProgress(pct) {
-        const clamped = Math.max(0, Math.min(1, pct));
-        if (fill) fill.style.width = (clamped * 100).toFixed(2) + '%';
-        if (progressLabel) progressLabel.textContent = String(Math.round(clamped * 100)).padStart(2, '0') + '%';
-      }
-
-      function updateVideoScrub(progress) {
-        setProgress(progress);
-        if (video.duration && !isNaN(video.duration) && video.duration > 0) {
-          const targetTime = progress * video.duration;
-          if (Math.abs(video.currentTime - targetTime) > 0.03) {
-            video.currentTime = targetTime;
-          }
-        }
-      }
-
-      video.pause();
-      video.currentTime = 0;
-
-      video.addEventListener('loadedmetadata', () => {
-        video.pause();
-        video.currentTime = 0;
-      });
-
-      ScrollTrigger.create({
-        trigger: section,
-        start: 'top top',
-        end: () => '+=' + (window.innerWidth < 641 ? 1800 : 3200),
-        pin: true,
-        anticipatePin: 1,
-        refreshPriority: 3,
-        invalidateOnRefresh: true,
-        onUpdate: self => updateVideoScrub(self.progress),
-        onLeaveBack: () => updateVideoScrub(0),
-        onLeave: () => updateVideoScrub(1)
-      });
-    })();
-
     /* ---------------- pinned sketch scroll ---------------- */
     (function () {
       const section = document.querySelector('.sketch-scroll');
@@ -4165,14 +4367,16 @@
 
     /* ---------------- hero heading char reveal ---------------- */
     const h1 = document.querySelector('.hero h1');
-    const originalHTML = h1.innerHTML;
-    h1.innerHTML = originalHTML.split(/(<br>|<em>|<\/em>)/g).map(chunk => {
-      if (chunk === '<br>' || chunk === '<em>' || chunk === '</em>') return chunk;
-      return chunk.split('').map(c => c === ' ' ? ' ' : `<span class="ch" style="display:inline-block;opacity:0;transform:translateY(28px)">${c}</span>`).join('');
-    }).join('');
-    gsap.to(h1.querySelectorAll('.ch'), {
-      opacity: 1, y: 0, duration: .8, stagger: 0.018, ease: 'power3.out', delay: .2
-    });
+    if (h1) {
+      const originalHTML = h1.innerHTML;
+      h1.innerHTML = originalHTML.split(/(<br>|<em>|<\/em>)/g).map(chunk => {
+        if (chunk === '<br>' || chunk === '<em>' || chunk === '</em>') return chunk;
+        return chunk.split('').map(c => c === ' ' ? ' ' : `<span class="ch" style="display:inline-block;opacity:0;transform:translateY(28px)">${c}</span>`).join('');
+      }).join('');
+      gsap.to(h1.querySelectorAll('.ch'), {
+        opacity: 1, y: 0, duration: .8, stagger: 0.018, ease: 'power3.out', delay: .2
+      });
+    }
 
     /* ---------------- counters ---------------- */
     document.querySelectorAll('.counter').forEach(el => {
@@ -4437,18 +4641,151 @@
     /* ---------------- floating hero cards parallax ---------------- */
     const heroPhoto = document.getElementById('heroPhoto');
     if (heroPhoto) {
+      const heroSlides = [
+        {
+          tab: 'Architecture',
+          eyebrow: 'Architecture',
+          description: 'Buildings that hold their form for a hundred years — from the first blueprint line to final handover, one continuous act of precision.',
+          image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=75',
+          alt: 'Modern architecture at dusk',
+          projectImage: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=200&q=70',
+          projectTitle: 'Crescent Bay Residence',
+          projectMeta: '₹4.2 Cr · Modern Villa'
+        },
+        {
+          tab: 'Interior',
+          eyebrow: 'Interior Design',
+          description: 'Rooms are composed around light, movement, tactility and storage, so every surface feels calm before it feels expensive.',
+          image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=75',
+          alt: 'Warm contemporary interior lounge',
+          projectImage: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=200&q=70',
+          projectTitle: 'Oak & Stone',
+          projectMeta: '₹94 L · Interior'
+        },
+        {
+          tab: 'Landscape',
+          eyebrow: 'Landscape',
+          description: 'Ground, water, shade and planting are shaped as one living threshold between the building and the climate around it.',
+          image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1600&q=75',
+          alt: 'Layered landscape design with trees',
+          projectImage: 'https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=200&q=70',
+          projectTitle: 'Cascade Gardens',
+          projectMeta: '₹9.2 Cr · Landscape'
+        },
+        {
+          tab: 'Construction',
+          eyebrow: 'Construction',
+          description: 'Site execution stays disciplined, photographed and accountable, with the build team working from the same design intent.',
+          image: 'https://images.unsplash.com/photo-1541976590-713941681591?auto=format&fit=crop&w=1600&q=75',
+          alt: 'Construction team reviewing building work',
+          projectImage: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=200&q=70',
+          projectTitle: 'Vantage Tower',
+          projectMeta: '₹41 Cr · Commercial'
+        },
+        {
+          tab: 'Consultancy',
+          eyebrow: 'Consultancy',
+          description: 'Feasibility, approvals, cost and phasing are clarified early so owners can decide with confidence before a site mobilizes.',
+          image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=75',
+          alt: 'Consultancy table with drawings and documents',
+          projectImage: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=200&q=70',
+          projectTitle: 'Atrium Works',
+          projectMeta: '₹19 Cr · Advisory'
+        }
+      ];
+      const slideImage = document.getElementById('heroSlideImage');
+      const slideEyebrow = document.getElementById('heroSlideEyebrow');
+      const slideDescription = document.getElementById('heroSlideDescription');
+      const projectCard = document.getElementById('fcProject');
+      const projectImage = document.getElementById('heroProjectImage');
+      const projectTitle = document.getElementById('heroProjectTitle');
+      const projectMeta = document.getElementById('heroProjectMeta');
+      const slideTabs = Array.from(document.querySelectorAll('.hero-pills button'));
+      const pillWrap = document.querySelector('.hero-pills');
+      let heroSlideIndex = 0;
+      let heroSlideTimer;
+      let typeTween;
+
+      function typeDescription(text) {
+        if (!slideDescription) return;
+        if (typeTween) typeTween.kill();
+        slideDescription.textContent = '';
+        const state = { n: 0 };
+        typeTween = gsap.to(state, {
+          n: text.length,
+          duration: Math.min(1.35, Math.max(.85, text.length * .012)),
+          ease: 'none',
+          onUpdate: () => {
+            slideDescription.textContent = text.slice(0, Math.round(state.n));
+          }
+        });
+      }
+
+      function restartHeroSlideTimer() {
+        clearInterval(heroSlideTimer);
+        heroSlideTimer = setInterval(() => showHeroSlide((heroSlideIndex + 1) % heroSlides.length), 3000);
+      }
+
+      function showHeroSlide(nextIndex, fromClick = false) {
+        if (!slideImage || !heroSlides[nextIndex]) return;
+        heroSlideIndex = nextIndex;
+        const slide = heroSlides[nextIndex];
+        slideTabs.forEach((tab, i) => {
+          tab.classList.toggle('active', i === nextIndex);
+          tab.setAttribute('aria-selected', i === nextIndex ? 'true' : 'false');
+        });
+        if (pillWrap) {
+          pillWrap.classList.remove('is-paused');
+          void pillWrap.offsetWidth;
+        }
+
+        gsap.timeline({ defaults: { ease: 'power3.out' } })
+          .to([slideImage, projectCard], { opacity: 0, scale: .965, y: 10, duration: .28, stagger: .035 })
+          .add(() => {
+            slideImage.src = slide.image;
+            slideImage.alt = slide.alt;
+            slideEyebrow.textContent = slide.eyebrow;
+            if (projectImage) {
+              projectImage.src = slide.projectImage;
+              projectImage.alt = slide.projectTitle;
+            }
+            if (projectTitle) projectTitle.textContent = slide.projectTitle;
+            if (projectMeta) projectMeta.textContent = slide.projectMeta;
+            typeDescription(slide.description);
+          })
+          .fromTo(slideImage, { opacity: 0, scale: 1.18, filter: 'blur(10px)' }, { opacity: 1, scale: 1.12, filter: 'blur(0px)', duration: .78 }, 'pop')
+          .fromTo(projectCard, { opacity: 0, scale: .78, y: 22 }, { opacity: 1, scale: 1, y: 0, duration: .62, ease: 'back.out(1.75)' }, 'pop+=.08')
+          .fromTo([slideEyebrow, slideDescription], { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: .42, stagger: .05 }, 'pop+=.14');
+
+        if (fromClick) {
+          if (pillWrap) {
+            pillWrap.classList.add('is-paused');
+            gsap.delayedCall(.65, () => pillWrap.classList.remove('is-paused'));
+          }
+          restartHeroSlideTimer();
+        }
+      }
+
+      slideTabs.forEach((tab, index) => {
+        tab.setAttribute('role', 'tab');
+        tab.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
+        tab.addEventListener('click', () => showHeroSlide(index, true));
+      });
+      typeDescription(heroSlides[0].description);
+      restartHeroSlideTimer();
+
       heroPhoto.addEventListener('mousemove', e => {
         const r = heroPhoto.getBoundingClientRect();
         const px = (e.clientX - r.left) / r.width - 0.5;
         const py = (e.clientY - r.top) / r.height - 0.5;
         gsap.to('#fcProject', { x: px * 14, y: py * 10, duration: .6, ease: 'power2.out' });
         gsap.to('#fcStat', { x: px * -14, y: py * -10, duration: .6, ease: 'power2.out' });
-        gsap.to(heroPhoto.querySelector('img'), { x: px * -18, y: py * -12, duration: .8, ease: 'power2.out' });
+        gsap.to(slideImage, { x: px * -18, y: py * -12, duration: .8, ease: 'power2.out' });
       });
       heroPhoto.addEventListener('mouseleave', () => {
-        gsap.to(['#fcProject', '#fcStat', heroPhoto.querySelector('img')], { x: 0, y: 0, duration: .8, ease: 'power3.out' });
+        gsap.to(['#fcProject', '#fcStat', slideImage], { x: 0, y: 0, duration: .8, ease: 'power3.out' });
       });
-      gsap.to(heroPhoto.querySelector('img'), {
+      gsap.to(slideImage, {
         yPercent: 8, ease: 'none',
         scrollTrigger: { trigger: heroPhoto, start: 'top top', end: 'bottom top', scrub: true }
       });
@@ -4481,15 +4818,18 @@
 
     /* ---------------- process line fill ---------------- */
     const steps = document.querySelectorAll('.p-step');
-    ScrollTrigger.create({
-      trigger: '.process-track', start: 'top 70%',
-      onEnter: () => {
-        steps.forEach((s, i) => {
-          gsap.to(document.getElementById('procFill'), { width: '100%', duration: 2, ease: 'power2.inOut' });
-          gsap.delayedCall(i * 0.35, () => s.classList.add('on'));
-        });
-      }
-    });
+    const processTrack = document.querySelector('.process-track');
+    if (processTrack && steps.length) {
+      ScrollTrigger.create({
+        trigger: processTrack, start: 'top 70%',
+        onEnter: () => {
+          steps.forEach((s, i) => {
+            gsap.to(document.getElementById('procFill'), { width: '100%', duration: 2, ease: 'power2.inOut' });
+            gsap.delayedCall(i * 0.35, () => s.classList.add('on'));
+          });
+        }
+      });
+    }
 
     /* ---------------- portfolio filter ---------------- */
     document.querySelectorAll('.filter-pill').forEach(pill => {
