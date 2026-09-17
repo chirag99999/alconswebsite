@@ -8,4 +8,4 @@ node_modules/
 alcons-astro/
 package-lock.json
 tools/static-server.js
-tools/verify-hero-carousel.js
+.astro/

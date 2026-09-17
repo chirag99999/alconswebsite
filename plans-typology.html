@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ALCONS Plans &amp; Typology — Architecture, Engineered for Light</title>
+  <meta name="description" content="40 expertly crafted floor plans across 4 orientations, 8 plot sizes, residential &amp; commercial. ALCONS Studio, Balasore, Odisha.">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:title" content="ALCONS Plans &amp; Typology — Architecture, Engineered for Light">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23111111'/%3E%3Cpath d='M14 46 L14 24 L32 12 L50 24 L50 46' fill='none' stroke='%234afffc' stroke-width='3.4' stroke-linejoin='round' stroke-linecap='round'/%3E%3Cline x1='32' y1='12' x2='32' y2='46' stroke='%234afffc' stroke-width='2' opacity='.5'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <style>
+    @font-face {
+      font-family: 'Blippo Black';
+      src: url('assets/fonts/Blippo-Black-Regular.otf') format('opentype');
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --bg: #FFFFFF;
+      --ink: #111111;
+      --ink-soft: #6B6E70;
+      --ink-faint: #9a9d9f;
+      --cyan: #4AFFFC;
+      --cyan-deep: #0FD8D4;
+      --accent: #0FD8D4;
+      --accent-glow: rgba(15,216,212,.15);
+      --accent-border: rgba(15,216,212,.35);
+      --line: #E7E7E5;
+      --line-strong: rgba(17,17,17,.18);
+      --panel: rgba(255,255,255,.6);
+      --glass: rgba(255,255,255,.72);
+      --glass-border: rgba(255,255,255,.88);
+      --surface: #fff;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,.06),0 4px 16px rgba(0,0,0,.04);
+      --shadow-md: 0 4px 16px rgba(0,0,0,.08),0 12px 40px rgba(0,0,0,.06);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,.10),0 24px 64px rgba(0,0,0,.08);
+      --shadow-xl: 0 20px 60px rgba(0,0,0,.15),0 60px 120px rgba(0,0,0,.10);
+      --r-xs: 8px;
+      --r-sm: 14px;
+      --r-md: 20px;
+      --r-lg: 28px;
+      --r-xl: 28px;
+      --ease: cubic-bezier(.16,.84,.24,1);
+      --ease-spring: cubic-bezier(.34,1.56,.64,1);
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;overflow-x:hidden;}
+    body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;font-weight:400;overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased;}
+    ::selection{background:var(--cyan);color:var(--ink);}
+    a{color:inherit;text-decoration:none;}
+    img{display:block;max-width:100%;}
+    button{font-family:inherit;cursor:none;border:none;background:none;}
+    ::-webkit-scrollbar{width:5px;height:5px;}
+    ::-webkit-scrollbar-thumb{background:rgba(0,0,0,.14);border-radius:4px;}
+
+    /* ── Custom cursor (matches main site) ── */
+    .cur{position:fixed;top:0;left:0;width:10px;height:10px;border-radius:50%;background:var(--ink);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .35s var(--ease),height .35s var(--ease),background .35s var(--ease),border .35s var(--ease);mix-blend-mode:difference;}
+    .cur-ring{position:fixed;top:0;left:0;width:36px;height:36px;border-radius:50%;border:1px solid var(--ink);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .45s var(--ease),height .45s var(--ease),border-color .45s var(--ease),opacity .45s var(--ease);mix-blend-mode:difference;}
+    .cur.big{width:64px;height:64px;background:var(--cyan);mix-blend-mode:normal;}
+    .cur-ring.big{width:0;height:0;opacity:0;}
+
+    /* ── Preloader (matches main site — dark bg, cyan bar) ── */
+    #preloader{position:fixed;inset:0;z-index:10000;background:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;}
+    #preloader .pl-mark{font-family:'Fraunces',serif;font-style:italic;font-weight:400;font-size:15px;color:#fff;letter-spacing:.04em;display:flex;align-items:center;gap:10px;}
+    #preloader .pl-mark svg{width:22px;height:22px;}
+    #preloader .pl-bar{width:200px;height:1px;background:rgba(255,255,255,.18);position:relative;overflow:hidden;}
+    #preloader .pl-bar i{position:absolute;left:0;top:0;bottom:0;width:0%;background:var(--cyan);}
+    #preloader .pl-pct{font-size:11px;color:rgba(255,255,255,.45);letter-spacing:.1em;}
+
+    /* ── Scroll progress ── */
+    #scrollProgress{position:fixed;top:0;left:0;height:3px;width:0%;background:var(--cyan-deep);z-index:600;transition:width .05s linear;}
+
+    /* ── Back to top ── */
+    #backTop{position:fixed;right:26px;bottom:26px;z-index:400;width:52px;height:52px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transform:translateY(12px) scale(.9);transition:opacity .4s var(--ease),transform .4s var(--ease);box-shadow:0 12px 30px rgba(17,17,17,.22);border:none;cursor:none;}
+    #backTop.show{opacity:1;pointer-events:auto;transform:translateY(0) scale(1);}
+    #backTop:hover{background:var(--cyan-deep);}
+    #backTop svg{width:18px;height:18px;}
+
+    /* ── Navbar (exact match main site) ── */
+    .nav{position:fixed;top:22px;left:50%;transform:translateX(-50%);width:min(1240px,92vw);height:74px;display:flex;align-items:center;justify-content:space-between;padding:0 14px 0 26px;border-radius:999px;z-index:500;background:rgba(255,255,255,0);border:1px solid transparent;transition:background .5s var(--ease),border-color .5s var(--ease),box-shadow .5s var(--ease),backdrop-filter .5s var(--ease);}
+    .nav.scrolled{background:rgba(255,255,255,.68);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);border-color:var(--line);box-shadow:0 12px 40px rgba(17,17,17,.06);}
+    .logo{font-family:'Blippo Black','Fraunces',serif;font-size:22px;font-weight:900;letter-spacing:0;display:flex;align-items:center;gap:8px;}
+    .logo span{color:var(--cyan-deep);font-style:normal;}
+    .nav-links{display:flex;align-items:center;gap:2px;position:relative;}
+    .nav-links a{position:relative;padding:10px 18px;font-size:13.5px;font-weight:500;color:var(--ink);border-radius:999px;z-index:2;}
+    .nav-pill{position:absolute;top:0;left:0;height:100%;background:var(--ink);border-radius:999px;z-index:1;transition:transform .55s var(--ease),width .55s var(--ease);}
+    .nav-links a.active{color:#fff;}
+    .nav-actions{display:flex;align-items:center;gap:12px;}
+    .nav-cta{position:relative;display:flex;align-items:center;gap:6px;padding:12px 22px;border-radius:999px;background:#fff;border:1px solid var(--ink);font-size:13px;font-weight:600;transition:transform .4s var(--ease),box-shadow .4s var(--ease);overflow:hidden;}
+    .nav-cta::before{content:'';position:absolute;inset:-40% auto -40% -65%;width:54%;background:linear-gradient(90deg,transparent,rgba(74,255,252,.32),transparent);transform:skewX(-18deg);transition:left .7s var(--ease);pointer-events:none;}
+    .nav-cta:hover::before{left:115%;}
+    .nav-cta:hover{box-shadow:0 0 0 6px rgba(74,255,252,.35);}
+    .nav-toggle{display:none;width:44px;height:44px;border-radius:50%;background:var(--ink);border:none;cursor:pointer;flex-direction:column;justify-content:center;align-items:center;gap:5px;z-index:502;transition:transform .3s var(--ease),background-color .3s var(--ease);}
+    .nav-toggle .bar{display:block;width:18px;height:2px;background:#fff;border-radius:2px;transition:transform .35s var(--ease),opacity .35s var(--ease);transform-origin:center;}
+    .nav-toggle.is-open .bar-1{transform:translateY(3.5px) rotate(45deg);}
+    .nav-toggle.is-open .bar-2{transform:translateY(-3.5px) rotate(-45deg);}
+    .nav-mobile-overlay{position:fixed;inset:0;width:100vw;height:100dvh;background:rgba(255,255,255,.96);backdrop-filter:blur(28px) saturate(180%);-webkit-backdrop-filter:blur(28px) saturate(180%);z-index:490;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .4s var(--ease),visibility .4s var(--ease);display:flex;flex-direction:column;padding:94px 6vw 40px;overflow-y:auto;}
+    .nav-mobile-overlay.is-open{opacity:1;visibility:visible;pointer-events:auto;}
+    .nav-mobile-container{max-width:540px;width:100%;margin:0 auto;display:flex;flex-direction:column;justify-content:space-between;min-height:100%;gap:32px;}
+    .nav-mobile-header{padding-bottom:12px;border-bottom:1px solid rgba(17,17,17,.08);}
+    .nav-mobile-tag{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;}
+    .nav-mobile-links{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;}
+    .nav-mobile-links li a{font-family:'Fraunces',serif;font-size:clamp(26px,7vw,40px);font-weight:300;color:var(--ink);display:flex;align-items:center;gap:16px;padding:6px 0;transition:color .3s var(--ease),transform .3s var(--ease);}
+    .nav-mobile-links li a span{font-family:'Inter',sans-serif;font-size:12px;font-weight:500;color:var(--cyan-deep);letter-spacing:.1em;}
+    .nav-mobile-links li a.active,.nav-mobile-links li a:hover{color:var(--cyan-deep);transform:translateX(6px);}
+    .nav-mobile-footer{display:flex;flex-direction:column;gap:24px;padding-top:24px;border-top:1px solid rgba(17,17,17,.08);}
+    .nav-mobile-info{font-size:12.5px;line-height:1.6;color:var(--ink-soft);}
+    .nav-mobile-info strong{color:var(--ink);}
+    .w-full{width:100%;justify-content:center;}
+
+    .btn{position:relative;display:inline-flex;align-items:center;gap:12px;padding:16px 30px;border-radius:999px;font-size:14px;font-weight:600;background:#fff;border:1px solid var(--ink);overflow:hidden;cursor:none;font-family:inherit;}
+    .btn::before{content:'';position:absolute;inset:-40% auto -40% -65%;width:54%;background:linear-gradient(90deg,transparent,rgba(74,255,252,.32),transparent);transform:skewX(-18deg);transition:left .7s var(--ease);pointer-events:none;}
+    .btn:hover::before{left:115%;}
+    .btn .arrow{transition:transform .4s var(--ease);}
+    .btn:hover .arrow{transform:translateX(6px);}
+    .btn.solid{background:var(--ink);color:#fff;border-color:var(--ink);}
+
+    .plans-hero{min-height:100svh;display:flex;align-items:flex-end;padding:120px 5vw 56px;position:relative;isolation:isolate;overflow:hidden;}
+    .plans-hero-bg{position:absolute;inset:0;z-index:-2;}
+    .plans-hero-bg img{width:100%;height:100%;object-fit:cover;}
+    .plans-hero-overlay{position:absolute;inset:0;z-index:-1;background:linear-gradient(105deg,rgba(255,255,255,.97) 0%,rgba(255,255,255,.88) 40%,rgba(255,255,255,.28) 70%,transparent 100%);}
+    .plans-hero-content{width:min(100%,1200px);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;}
+    .plans-eyebrow{display:inline-flex;align-items:center;gap:8px;margin-bottom:18px;font-size:12px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);}
+    .plans-eyebrow::before{content:'';width:18px;height:1.5px;background:var(--accent);}
+    .plans-hero h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(44px,6vw,98px);line-height:.93;letter-spacing:-.04em;margin-bottom:24px;color:var(--ink);}
+    .plans-hero h1 em{color:var(--accent);font-style:normal;}
+    .plans-hero-desc{font-size:15px;line-height:1.7;color:var(--ink-soft);max-width:400px;margin-bottom:36px;}
+    .plans-type-pills{display:flex;gap:10px;flex-wrap:wrap;}
+    .plans-type-pill{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:var(--r-md);background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(16px);cursor:pointer;transition:all .4s var(--ease);font-family:inherit;}
+    .plans-type-pill:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);}
+    .plans-type-pill.active{background:var(--ink);border-color:var(--ink);color:#fff;}
+    .plans-type-pill.active .pill-count{background:rgba(255,255,255,.15);color:rgba(255,255,255,.8);}
+    .pill-icon{width:36px;height:36px;border-radius:50%;background:rgba(15,216,212,.1);display:grid;place-items:center;color:var(--accent);flex-shrink:0;}
+    .plans-type-pill.active .pill-icon{background:rgba(255,255,255,.12);}
+    .pill-text b{display:block;font-size:13px;font-weight:600;letter-spacing:-.01em;}
+    .pill-text small{font-size:11px;color:var(--ink-soft);}
+    .plans-type-pill.active .pill-text small{color:rgba(255,255,255,.6);}
+    .pill-count{font-size:11px;font-weight:700;background:var(--accent-glow);color:var(--accent);padding:2px 8px;border-radius:20px;margin-left:auto;}
+    .plans-hero-stats{display:grid;grid-template-rows:repeat(4,1fr);border:1px solid var(--glass-border);border-radius:var(--r-xl);background:var(--glass);backdrop-filter:blur(20px);overflow:hidden;box-shadow:var(--shadow-lg);}
+    .hero-stat{display:flex;align-items:center;gap:14px;padding:16px 20px;border-bottom:1px solid var(--line);transition:background .3s;}
+    .hero-stat:last-child{border-bottom:0;}
+    .hero-stat:hover{background:rgba(255,255,255,.5);}
+    .stat-icon{width:40px;height:40px;border-radius:var(--r-sm);background:rgba(15,216,212,.08);display:grid;place-items:center;color:var(--accent);flex-shrink:0;}
+    .stat-label{flex:1;}
+    .stat-label strong{display:block;font-size:22px;font-weight:700;letter-spacing:-.03em;line-height:1;margin-bottom:2px;}
+    .stat-label span{font-size:12px;color:var(--ink-soft);}
+
+    /* ── Catalog ── */
+    .plans-catalog{padding:0 5vw 80px;}
+    .catalog-inner{width:min(100%,1200px);margin:0 auto;}
+
+    /* ── Controls ── */
+    .controls-bar{position:sticky;top:90px;z-index:100;background:rgba(245,245,247,.88);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border-radius:var(--r-xl);border:1px solid var(--glass-border);padding:14px 18px;margin-bottom:20px;box-shadow:var(--shadow-md);display:flex;flex-direction:column;gap:12px;}
+    .controls-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+    /* Size chips row — fully scrollable, arrow indicators */
+    .chips-wrapper{position:relative;}
+    .chips-wrapper::after{content:'';position:absolute;right:0;top:0;bottom:0;width:32px;background:linear-gradient(to right,transparent,rgba(245,245,247,.95));pointer-events:none;border-radius:0 999px 999px 0;}
+    .controls-bottom{display:flex;align-items:center;gap:8px;overflow-x:auto;padding-bottom:0;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+    .controls-bottom::-webkit-scrollbar{display:none;}
+    .search-wrap{position:relative;flex:1;min-width:160px;max-width:280px;}
+    .search-wrap svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--ink-faint);pointer-events:none;}
+    #planSearch{width:100%;height:38px;padding:0 14px 0 36px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.85);font-family:inherit;font-size:13px;color:var(--ink);outline:none;transition:border-color .2s,box-shadow .2s;}
+    #planSearch:focus{border-color:var(--accent-border);box-shadow:0 0 0 3px var(--accent-glow);background:#fff;}
+    #planSearch::placeholder{color:var(--ink-faint);}
+    .count-label{font-size:13px;font-weight:600;color:var(--ink);white-space:nowrap;}
+    .count-label span{color:var(--accent);}
+    .sort-select{height:38px;padding:0 30px 0 13px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.85) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='%236e6e73' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 10px center;-webkit-appearance:none;font-family:inherit;font-size:12.5px;font-weight:500;color:var(--ink);outline:none;cursor:pointer;transition:border-color .2s;}
+    .sort-select:focus{border-color:var(--accent-border);}
+    .chip{display:inline-flex;align-items:center;gap:5px;height:34px;padding:0 13px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.8);font-family:inherit;font-size:12px;font-weight:600;color:var(--ink-soft);cursor:pointer;white-space:nowrap;transition:all .2s var(--ease);flex-shrink:0;letter-spacing:-.01em;}
+    .chip:hover{border-color:var(--ink);color:var(--ink);background:#fff;transform:translateY(-1px);}
+    .chip.active{background:var(--ink);border-color:var(--ink);color:#fff;}
+    .chip.active .chip-sq{background:rgba(255,255,255,.15);color:rgba(255,255,255,.75);}
+    .chip-sq{font-size:10px;background:var(--accent-glow);color:var(--accent);padding:1px 6px;border-radius:10px;font-weight:700;}
+
+    /* ── Workspace ── */
+    .plans-workspace{display:grid;grid-template-columns:250px 1fr;gap:18px;align-items:start;}
+
+    /* ── Orientation panel ── */
+    .orientation-panel{border:1px solid var(--glass-border);border-radius:var(--r-xl);background:var(--glass);backdrop-filter:blur(16px);overflow:hidden;box-shadow:var(--shadow-sm);position:sticky;top:260px;}
+    .orient-option{width:100%;border:0;border-bottom:1px solid var(--line);background:transparent;display:grid;grid-template-columns:40px 1fr auto auto;gap:10px;align-items:center;padding:14px 16px;text-align:left;font:inherit;cursor:pointer;transition:all .3s var(--ease);}
+    .orient-option:last-child{border-bottom:0;}
+    .orient-option:hover{background:rgba(255,255,255,.6);}
+    .orient-option.active{background:linear-gradient(135deg,rgba(29,29,31,.9),rgba(29,29,31,.75));color:#fff;}
+    .orient-icon{width:36px;height:36px;border-radius:var(--r-xs);background:rgba(15,216,212,.1);display:grid;place-items:center;color:var(--accent);transition:all .3s;}
+    .orient-option.active .orient-icon{background:rgba(255,255,255,.12);}
+    .orient-text b{display:block;font-size:12.5px;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin-bottom:2px;}
+    .orient-text small{font-size:10.5px;color:var(--ink-soft);line-height:1.3;}
+    .orient-option.active .orient-text small{color:rgba(255,255,255,.5);}
+    .orient-badge{font-size:10.5px;font-weight:700;background:var(--accent-glow);color:var(--accent);padding:2px 7px;border-radius:10px;flex-shrink:0;transition:all .3s;}
+    .orient-option.active .orient-badge{background:rgba(255,255,255,.15);color:rgba(255,255,255,.8);}
+    .orient-arrow{font-size:12px;color:var(--accent);opacity:0;transform:translateX(-5px);transition:all .3s var(--ease);}
+    .orient-option.active .orient-arrow{opacity:1;transform:translateX(0);}
+
+    /* ── Plan grid ── */
+    .plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+
+    /* ── Plan card ── */
+    .plan-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-xl);overflow:hidden;display:flex;flex-direction:column;transition:all .4s var(--ease);cursor:pointer;}
+    .plan-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:var(--line-strong);}
+    .plan-card-img{aspect-ratio:4/3;overflow:hidden;position:relative;background:#ebebed;}
+    .plan-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease);}
+    .plan-card:hover .plan-card-img img{transform:scale(1.06);}
+    .plan-fav-btn{position:absolute;top:10px;right:10px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.88);backdrop-filter:blur(8px);border:none;display:grid;place-items:center;font-size:13px;cursor:pointer;transition:all .25s var(--ease-spring);z-index:2;color:var(--ink-soft);}
+    .plan-fav-btn:hover{transform:scale(1.2);}
+    .plan-fav-btn.is-fav{color:#e53935;}
+    .plan-type-badge{position:absolute;bottom:10px;left:10px;background:rgba(29,29,31,.82);backdrop-filter:blur(8px);color:rgba(255,255,255,.9);font-size:9.5px;font-weight:600;padding:3px 9px;border-radius:20px;letter-spacing:.04em;}
+    .plan-vastu-badge{position:absolute;bottom:10px;right:10px;background:rgba(15,216,212,.92);color:var(--ink);font-size:9.5px;font-weight:700;padding:3px 9px;border-radius:20px;}
+    .plan-card-body{padding:14px;display:flex;flex-direction:column;flex:1;}
+    .plan-card-orient{font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;}
+    .plan-card-title{font-size:14px;font-weight:600;letter-spacing:-.02em;color:var(--ink);margin-bottom:3px;line-height:1.3;}
+    .plan-card-sub{font-size:11.5px;color:var(--ink-soft);margin-bottom:10px;}
+    .plan-card-specs{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px;}
+    .spec-pill{font-size:10.5px;font-weight:500;color:var(--ink-soft);background:var(--bg);border:1px solid var(--line);padding:2px 8px;border-radius:20px;}
+    .plan-card-footer{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:10px;border-top:1px solid var(--line);}
+    .plan-card-price{font-size:12.5px;font-weight:700;color:var(--ink);letter-spacing:-.02em;}
+    .plan-view-btn{display:inline-flex;align-items:center;gap:4px;padding:7px 12px;border-radius:999px;background:var(--ink);color:#fff;font-size:11.5px;font-weight:600;border:none;transition:all .3s var(--ease);}
+    .plan-view-btn:hover{background:var(--accent);color:var(--ink);transform:translateY(-1px);}
+
+    /* ── Empty state ── */
+    .plans-empty{grid-column:1/-1;text-align:center;padding:60px 20px;background:var(--surface);border-radius:var(--r-xl);border:1px solid var(--line);}
+    .plans-empty h3{font-size:19px;font-weight:600;margin-bottom:7px;letter-spacing:-.02em;}
+    .plans-empty p{font-size:13.5px;color:var(--ink-soft);line-height:1.6;}
+
+    /* ── CTA ── */
+    .plans-cta{margin-top:28px;border-radius:var(--r-xl);background:var(--ink);color:#fff;padding:36px 36px;display:flex;align-items:center;justify-content:space-between;gap:28px;position:relative;overflow:hidden;}
+    .plans-cta::before{content:'';position:absolute;inset:-20%;background:radial-gradient(circle at 80% 50%,rgba(15,216,212,.18),transparent 55%);pointer-events:none;}
+    .plans-cta h3{font-family:'Fraunces',serif;font-size:clamp(20px,2.4vw,32px);font-weight:300;line-height:1.2;letter-spacing:-.03em;position:relative;}
+    .plans-cta p{font-size:13.5px;color:rgba(255,255,255,.5);margin-top:5px;max-width:400px;line-height:1.6;position:relative;}
+    .plans-cta-actions{display:flex;gap:10px;flex-shrink:0;position:relative;}
+
+    /* ── Buttons ── */
+    .btn{display:inline-flex;align-items:center;gap:7px;padding:12px 22px;border-radius:999px;font-family:inherit;font-size:13.5px;font-weight:600;border:none;cursor:pointer;transition:all .35s var(--ease);letter-spacing:-.01em;}
+    .btn-primary{background:#fff;color:var(--ink);}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,255,255,.2);}
+    .btn-ghost{background:transparent;color:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.2);}
+    .btn-ghost:hover{border-color:rgba(255,255,255,.5);color:#fff;}
+    .btn-dark{background:var(--ink);color:#fff;}
+    .btn-dark:hover{background:#2d2d2f;transform:translateY(-2px);box-shadow:var(--shadow-md);}
+    .btn-outline{background:transparent;color:var(--ink);border:1px solid var(--line-strong);}
+    .btn-outline:hover{border-color:var(--ink);background:var(--ink);color:#fff;}
+
+    /* ── MODAL ── */
+    #planModal{position:fixed;inset:0;z-index:800;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;background:rgba(20,20,22,.55);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);transition:opacity .35s var(--ease);}
+    #planModal.open{opacity:1;pointer-events:auto;}
+    .modal-card{width:100%;max-width:900px;max-height:92svh;background:var(--surface);border-radius:var(--r-xl);box-shadow:var(--shadow-xl);border:1px solid var(--line);transform:translateY(22px) scale(.97);transition:transform .4s var(--ease);display:flex;flex-direction:row;overflow:hidden;position:relative;}
+    #planModal.open .modal-card{transform:translateY(0) scale(1);}
+    .modal-close{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;background:rgba(245,245,247,.92);border:1px solid var(--line);font-size:17px;display:grid;place-items:center;cursor:pointer;z-index:10;transition:all .25s;color:var(--ink-soft);}
+    .modal-close:hover{background:#fff;color:var(--ink);transform:scale(1.1);}
+    /* Visual pane — fixed width on desktop, full width on mobile */
+    .modal-visual{width:42%;min-width:280px;flex-shrink:0;background:#ebebed;position:relative;overflow:hidden;}
+    .modal-visual img{width:100%;height:100%;object-fit:cover;transition:opacity .3s var(--ease);}
+    .modal-view-toggle{position:absolute;bottom:14px;left:12px;right:12px;display:flex;gap:5px;}
+    .view-btn{flex:1;height:34px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(29,29,31,.62);backdrop-filter:blur(8px);color:rgba(255,255,255,.75);font-size:10.5px;font-weight:600;cursor:pointer;transition:all .25s;letter-spacing:.02em;font-family:inherit;}
+    .view-btn.active,.view-btn:hover{background:rgba(255,255,255,.16);color:#fff;border-color:rgba(255,255,255,.4);}
+    /* Body pane — scrollable */
+    .modal-body{flex:1;padding:28px 28px 28px 24px;display:flex;flex-direction:column;overflow-y:auto;min-width:0;}
+    .modal-eyebrow{font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;}
+    .modal-title{font-family:'Fraunces',serif;font-size:clamp(20px,2.2vw,29px);font-weight:300;letter-spacing:-.03em;color:var(--ink);margin-bottom:7px;line-height:1.1;}
+    .modal-desc{font-size:13.5px;line-height:1.65;color:var(--ink-soft);margin-bottom:20px;}
+    /* Specs grid — 2-col always */
+    .modal-specs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px;}
+    .modal-spec{padding:11px 13px;background:var(--bg);border-radius:var(--r-sm);border:1px solid var(--line);}
+    .modal-spec strong{display:block;font-size:14.5px;font-weight:700;letter-spacing:-.02em;color:var(--ink);margin-bottom:1px;}
+    .modal-spec span{font-size:10.5px;color:var(--ink-faint);font-weight:500;}
+    .modal-features-label{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:8px;}
+    .modal-features{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:22px;}
+    .modal-feature-tag{font-size:11.5px;font-weight:500;color:var(--ink);background:var(--bg);border:1px solid var(--line);padding:4px 11px;border-radius:999px;}
+    .modal-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:auto;padding-top:14px;border-top:1px solid var(--line);}
+    .modal-actions .btn{font-size:12.5px;padding:10px 18px;}
+    .btn-price-tag{display:inline-block;padding:2px 7px;background:rgba(15,216,212,0.22);color:#0FD8D4;border-radius:999px;font-size:11px;font-weight:700;margin-left:4px;border:1px solid rgba(15,216,212,0.4);}
+    .btn-dark .btn-price-tag{background:rgba(15,216,212,0.2);color:#0FD8D4;}
+    .btn-outline .btn-price-tag{background:rgba(17,17,19,0.08);color:var(--ink);border-color:rgba(17,17,19,0.15);}
+
+    /* ── Checkout & Intake Modals ── */
+    .alcons-checkout-modal{position:fixed;inset:0;z-index:950;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;background:rgba(15,23,42,0.72);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);transition:opacity .35s var(--ease);}
+    .alcons-checkout-modal.open{opacity:1;pointer-events:auto;}
+    .checkout-modal-card{width:100%;max-width:520px;max-height:92svh;background:#fff;border-radius:var(--r-xl);box-shadow:var(--shadow-xl);border:1px solid var(--line);transform:translateY(22px) scale(.98);transition:transform .35s var(--ease);overflow-y:auto;padding:30px 26px;position:relative;}
+    .alcons-checkout-modal.open .checkout-modal-card{transform:translateY(0) scale(1);}
+    .checkout-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:rgba(15,216,212,0.12);color:#0ca6a3;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;}
+    .checkout-title{font-family:'Fraunces',serif;font-size:24px;font-weight:400;color:var(--ink);margin-bottom:4px;}
+    .checkout-desc{font-size:13px;color:var(--ink-soft);line-height:1.5;margin-bottom:18px;}
+    .checkout-summary-box{background:var(--bg);border:1px solid var(--line);border-radius:var(--r-sm);padding:14px 16px;margin-bottom:18px;}
+    .checkout-summary-plan{font-weight:700;color:var(--ink);font-size:14px;margin-bottom:4px;}
+    .checkout-summary-specs{font-size:12px;color:var(--ink-soft);}
+    .checkout-summary-price-row{display:flex;justify-content:space-between;align-items:baseline;margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);}
+    .checkout-form-group{margin-bottom:14px;}
+    .checkout-label{display:block;font-size:11.5px;font-weight:600;color:var(--ink);margin-bottom:5px;}
+    .checkout-input,.checkout-textarea{width:100%;padding:10px 13px;border-radius:var(--r-sm);border:1px solid var(--line-strong);font-family:inherit;font-size:13px;outline:none;transition:border-color .2s;box-sizing:border-box;}
+    .checkout-input:focus,.checkout-textarea:focus{border-color:var(--cyan-deep);}
+    .checkout-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .checkout-actions{display:flex;gap:10px;margin-top:20px;}
+    .checkout-actions .btn{flex:1;justify-content:center;}
+    .rzp-security-note{display:flex;align-items:center;justify-content:center;gap:6px;font-size:11px;color:var(--ink-faint);margin-top:12px;}
+    .checkout-success-icon{width:56px;height:56px;border-radius:50%;background:rgba(15,216,212,0.15);color:var(--cyan-deep);display:grid;place-items:center;margin:0 auto 16px;font-size:26px;}
+
+    /* ── Footer (exact match main site) ── */
+    footer{padding:90px 6vw 40px;border-top:1px solid var(--line);background:var(--bg);color:var(--ink);}
+    .foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:70px;max-width:1440px;margin:0 auto;}
+    .foot-top h3{font-family:'Fraunces',serif;font-size:30px;font-weight:400;margin-bottom:14px;}
+    .footer-logo{font-family:'Blippo Black','Fraunces',serif !important;font-weight:900 !important;letter-spacing:0;}
+    .foot-top p{color:var(--ink-soft);font-size:14px;max-width:280px;line-height:1.6;}
+    .foot-col span{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:18px;}
+    .foot-col a{display:block;font-size:14px;padding:7px 0;color:var(--ink);transition:color .2s;}
+    .foot-col a:hover{color:var(--cyan-deep);}
+    .foot-bottom{max-width:1440px;margin:0 auto;display:flex;justify-content:space-between;padding-top:30px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-soft);}
+    .social-row{display:flex;gap:10px;margin-top:18px;}
+    .social-row a{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;transition:background .35s var(--ease),border-color .35s var(--ease),transform .35s var(--ease);}
+    .social-row a svg{width:16px;height:16px;}
+    .social-row a:hover{background:var(--ink);border-color:var(--ink);color:#fff;transform:translateY(-3px);}
+    .social-row a:hover svg{stroke:#fff;}
+
+    .reveal{opacity:0;transform:translateY(36px);will-change:transform,opacity;}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:1100px){
+      .plans-hero-content{grid-template-columns:1fr;gap:36px;}
+      .plans-hero-stats{grid-template-columns:repeat(2,1fr);grid-template-rows:auto;}
+      .hero-stat{border-bottom:1px solid var(--line);}
+      .plans-workspace{grid-template-columns:1fr;}
+      .orientation-panel{position:static;display:grid;grid-template-columns:repeat(2,1fr);}
+      .orient-option{border-bottom:1px solid var(--line);border-right:1px solid var(--line);}
+      .orient-option:nth-child(even){border-right:0;}
+      .plans-grid{grid-template-columns:repeat(2,1fr);}
+      .controls-bar{position:relative;top:auto;}
+    }
+    @media(max-width:980px){
+      .nav-links,.nav-pill,.nav-cta{display:none !important;}
+      .nav-toggle{display:flex;}
+      .nav{top:14px;width:calc(100vw - 28px);height:60px;padding:0 10px 0 20px;background:rgba(255,255,255,.88);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);border-color:rgba(17,17,17,.1);box-shadow:0 10px 30px rgba(17,17,17,.08);}
+    }
+    @media(max-width:900px){
+      .modal-card{flex-direction:column;overflow-y:auto;max-height:92svh;}
+      .modal-visual{width:100%;min-width:0;height:240px;min-height:unset;}
+      .modal-body{overflow-y:visible;padding:20px;}
+    }
+    @media(max-width:768px){
+      .plans-hero{padding:96px 5vw 44px;}
+      .plans-cta{flex-direction:column;align-items:flex-start;}
+      .plans-cta-actions{width:100%;}
+      .foot-top{grid-template-columns:1fr 1fr;}
+      .controls-top{gap:8px;}
+      .search-wrap{max-width:100%;flex:1 1 160px;}
+    }
+    @media(max-width:580px){
+      .plans-grid{grid-template-columns:1fr;}
+      .orientation-panel{grid-template-columns:1fr;}
+      .orient-option{border-right:0;}
+      .modal-specs{grid-template-columns:1fr 1fr;}
+      .foot-top{grid-template-columns:1fr;}
+      .foot-bottom{flex-direction:column;align-items:flex-start;gap:8px;}
+    }
+  </style>
+</head>
+<body data-page="plans">
+
+<!-- PRELOADER (matches main site exactly) -->
+<div id="preloader">
+  <div class="pl-mark">
+    <svg viewBox="0 0 64 64" fill="none">
+      <path d="M14 46 L14 24 L32 12 L50 24 L50 46" stroke="#4afffc" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="round"/>
+    </svg>
+    ALCONS
+  </div>
+  <div class="pl-bar"><i id="plFill"></i></div>
+  <div class="pl-pct" id="plPct">0%</div>
+</div>
+
+<div id="scrollProgress"></div>
+<div class="cur" id="cur"></div>
+<div class="cur-ring" id="curRing"></div>
+
+<!-- NAV (matches main site exactly) -->
+<nav class="nav" id="nav">
+  <a href="index.html" class="logo hoverable" data-page-link="home">ALCONS<span>.</span></a>
+  <div class="nav-links" id="navLinks">
+    <div class="nav-pill" id="navPill"></div>
+    <a href="services.html" class="hoverable" data-page-link="services">Services</a>
+    <a href="portfolio.html" class="hoverable" data-page-link="portfolio">Portfolio</a>
+    <a href="plans-typology.html" class="hoverable" data-page-link="plans">Plans &amp; Typology</a>
+    <a href="about.html" class="hoverable" data-page-link="about">About</a>
+    <a href="pricing.html" class="hoverable" data-page-link="pricing">Pricing</a>
+    <a href="contact.html" class="hoverable" data-page-link="contact">Contact</a>
+  </div>
+  <div class="nav-actions">
+    <a href="contact.html" class="nav-cta hoverable">Book Consultation</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
+      <span class="bar bar-1"></span>
+      <span class="bar bar-2"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE OVERLAY (matches main site exactly) -->
+<div class="nav-mobile-overlay" id="navMobileOverlay">
+  <div class="nav-mobile-container">
+    <div class="nav-mobile-header">
+      <span class="nav-mobile-tag">Navigation</span>
+    </div>
+    <ul class="nav-mobile-links">
+      <li><a href="index.html" data-page-link="home"><span>01</span> Home</a></li>
+      <li><a href="services.html" data-page-link="services"><span>02</span> Services</a></li>
+      <li><a href="portfolio.html" data-page-link="portfolio"><span>03</span> Portfolio</a></li>
+      <li><a href="plans-typology.html" data-page-link="plans" class="active"><span>04</span> Plans &amp; Typology</a></li>
+      <li><a href="about.html" data-page-link="about"><span>05</span> About</a></li>
+      <li><a href="pricing.html" data-page-link="pricing"><span>06</span> Pricing</a></li>
+      <li><a href="contact.html" data-page-link="contact"><span>07</span> Contact</a></li>
+    </ul>
+    <div class="nav-mobile-footer">
+      <a href="contact.html" class="btn solid hoverable w-full">Book Consultation <span class="arrow"><svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></a>
+      <div class="nav-mobile-info">
+        <div><strong>ALCONS Studio</strong></div>
+        <div>Municipality Market Complex, Balasore, Odisha</div>
+        <div>Mon–Sat: 9:15 AM – 8:00 PM</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="plans-hero">
+  <div class="plans-hero-bg">
+    <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1800&q=78" alt="Architecture background" loading="eager">
+  </div>
+  <div class="plans-hero-overlay"></div>
+  <div class="plans-hero-content">
+    <div>
+      <div class="plans-eyebrow reveal">Plans &amp; Typology</div>
+      <h1 class="reveal">Plans Built<br>For Every <em>Vision.</em></h1>
+      <p class="plans-hero-desc reveal">40 expertly crafted architectural floor plans across 4 orientations, 8 plot sizes, and 2 typologies — all Vastu-optimized and ready to customize.</p>
+      <div class="plans-type-pills reveal" id="typePills">
+        <button class="plans-type-pill active" data-type="Residential">
+          <span class="pill-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg></span>
+          <div class="pill-text"><b>Residential</b><small>Homes &amp; Villas</small></div>
+          <span class="pill-count" id="resCount">20</span>
+        </button>
+        <button class="plans-type-pill" data-type="Commercial">
+          <span class="pill-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V5a2 2 0 0 1 2-2h8v18"/><path d="M14 8h4a2 2 0 0 1 2 2v11"/><path d="M8 7h2M8 11h2M8 15h2"/></svg></span>
+          <div class="pill-text"><b>Commercial</b><small>Offices &amp; Retail</small></div>
+          <span class="pill-count" id="comCount">20</span>
+        </button>
+      </div>
+    </div>
+    <div class="plans-hero-stats reveal">
+      <div class="hero-stat">
+        <div class="stat-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="5" y="4" width="14" height="16" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg></div>
+        <div class="stat-label"><strong>40</strong><span>Ready Floor Plans</span></div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 7h16M4 17h16M7 4v16M17 4v16"/></svg></div>
+        <div class="stat-label"><strong>8</strong><span>Plot Sizes</span></div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 2v20M2 12h20"/></svg></div>
+        <div class="stat-label"><strong>4</strong><span>Road Orientations</span></div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg></div>
+        <div class="stat-label"><strong>100%</strong><span>Customizable</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATALOG -->
+<div class="plans-catalog">
+  <div class="catalog-inner">
+
+    <!-- CONTROLS -->
+    <div class="controls-bar reveal">
+      <div class="controls-top">
+        <div class="search-wrap">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="planSearch" placeholder="Search plans, features, Vastu…" autocomplete="off">
+        </div>
+        <span class="count-label"><span id="countNum">5</span> plans</span>
+        <select id="planSort" class="sort-select">
+          <option value="default">Recommended</option>
+          <option value="sqft-asc">Area: Low → High</option>
+          <option value="sqft-desc">Area: High → Low</option>
+          <option value="bed-desc">Bedrooms: Most First</option>
+          <option value="price-asc">Budget: Low → High</option>
+        </select>
+      </div>
+      <!-- Size chips: scrollable row, no truncation -->
+      <div class="chips-wrapper">
+        <div class="controls-bottom" id="sizeChips">
+          <button class="chip active" data-size="all">All Sizes</button>
+          <button class="chip" data-size="20x30">20×30 <span class="chip-sq">600</span></button>
+          <button class="chip" data-size="30x30">30×30 <span class="chip-sq">900</span></button>
+          <button class="chip" data-size="30x40">30×40 <span class="chip-sq">1200</span></button>
+          <button class="chip" data-size="30x80">30×80 <span class="chip-sq">2400</span></button>
+          <button class="chip" data-size="40x40">40×40 <span class="chip-sq">1600</span></button>
+          <button class="chip" data-size="40x60">40×60 <span class="chip-sq">2400</span></button>
+          <button class="chip" data-size="50x50">50×50 <span class="chip-sq">2500</span></button>
+          <button class="chip" data-size="60x80">60×80 <span class="chip-sq">4800</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- WORKSPACE -->
+    <div class="plans-workspace">
+
+      <!-- ORIENTATION PANEL -->
+      <div class="orientation-panel" id="orientPanel">
+        <button class="orient-option active" data-orient="north">
+          <span class="orient-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3v18"/><path d="M8 7l4-4 4 4"/></svg></span>
+          <div class="orient-text"><b>North Facing</b><small>Balanced daylight</small></div>
+          <span class="orient-badge" id="ob-north">5</span>
+          <span class="orient-arrow">→</span>
+        </button>
+        <button class="orient-option" data-orient="south">
+          <span class="orient-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 21V3"/><path d="M8 17l4 4 4-4"/></svg></span>
+          <div class="orient-text"><b>South Facing</b><small>Shaded courts</small></div>
+          <span class="orient-badge" id="ob-south">5</span>
+          <span class="orient-arrow">→</span>
+        </button>
+        <button class="orient-option" data-orient="east">
+          <span class="orient-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 12h18"/><path d="M17 8l4 4-4 4"/></svg></span>
+          <div class="orient-text"><b>East Facing</b><small>Morning sun</small></div>
+          <span class="orient-badge" id="ob-east">5</span>
+          <span class="orient-arrow">→</span>
+        </button>
+        <button class="orient-option" data-orient="west">
+          <span class="orient-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 12H3"/><path d="M7 8l-4 4 4 4"/></svg></span>
+          <div class="orient-text"><b>West Facing</b><small>Evening stability</small></div>
+          <span class="orient-badge" id="ob-west">5</span>
+          <span class="orient-arrow">→</span>
+        </button>
+      </div>
+
+      <!-- GRID -->
+      <div class="plans-grid" id="plansGrid"></div>
+    </div>
+
+    <!-- CTA BANNER -->
+    <div class="plans-cta reveal">
+      <div>
+        <h3>Can't find your exact plot dimensions?</h3>
+        <p>Our studio drafts custom floor plans tailored to your boundary, Vastu requirements, sun path, family size and construction budget.</p>
+      </div>
+      <div class="plans-cta-actions">
+        <a href="contact.html" class="btn btn-primary">Talk to an Architect →</a>
+        <a href="contact.html" class="btn btn-ghost">Book Consultation</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODAL -->
+<div id="planModal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+    <div class="modal-visual">
+      <img id="modalImg" src="" alt="">
+      <div class="modal-view-toggle">
+        <button class="view-btn active" id="viewRender">Exterior View</button>
+        <button class="view-btn" id="viewBlueprint">Blueprint</button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-eyebrow" id="modalType"></div>
+      <h2 class="modal-title" id="modalTitle"></h2>
+      <p class="modal-desc" id="modalDesc"></p>
+      <div class="modal-specs" id="modalSpecs"></div>
+      <div class="modal-features-label">Key Features</div>
+      <div class="modal-features" id="modalFeatures"></div>
+      <div class="modal-actions">
+        <button id="modalCta" type="button" class="btn btn-dark">Customize Plan <span class="btn-price-tag">₹1,499</span> →</button>
+        <button id="modalDl" type="button" class="btn btn-outline">Download PDF <span class="btn-price-tag">₹499</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DOWNLOAD PDF CHECKOUT MODAL -->
+<div id="downloadPlanModal" class="alcons-checkout-modal" role="dialog" aria-modal="true">
+  <div class="checkout-modal-card">
+    <button class="modal-close" id="dlModalClose" aria-label="Close">×</button>
+    <div class="checkout-badge">Official Architectural Package</div>
+    <h3 class="checkout-title">Download Architectural Blueprint</h3>
+    <p class="checkout-desc">Get the complete high-resolution floor plan, detailed CAD blueprint schematics, dimension schedules, and Vastu compliance matrix.</p>
+
+    <div class="checkout-summary-box">
+      <div class="checkout-summary-plan" id="dlSummaryTitle">30×40 North Duplex Villa</div>
+      <div class="checkout-summary-specs" id="dlSummarySpecs">Residential · North Facing · 1,200 sqft · 100% Vastu</div>
+      <div class="checkout-summary-price-row">
+        <span style="font-size:12px; color:var(--ink-soft);">Package Price (One-time):</span>
+        <span style="font-size:18px; font-weight:700; color:var(--cyan-deep);" id="dlPriceLabel">₹499</span>
+      </div>
+    </div>
+
+    <form id="dlCheckoutForm">
+      <div class="checkout-form-group">
+        <label class="checkout-label">Full Name *</label>
+        <input type="text" id="dlName" class="checkout-input" placeholder="e.g. Rajesh Mohapatra" required>
+      </div>
+      <div class="checkout-row">
+        <div class="checkout-form-group">
+          <label class="checkout-label">Email Address (for PDF delivery) *</label>
+          <input type="email" id="dlEmail" class="checkout-input" placeholder="rajesh@example.com" required>
+        </div>
+        <div class="checkout-form-group">
+          <label class="checkout-label">Phone / WhatsApp Number *</label>
+          <input type="tel" id="dlPhone" class="checkout-input" placeholder="+91 98765 43210" required>
+        </div>
+      </div>
+
+      <div class="checkout-actions">
+        <button type="button" class="btn btn-outline" id="dlCancelBtn">Cancel</button>
+        <button type="submit" class="btn btn-dark" id="dlSubmitBtn" style="background:#0F172A; color:#0FD8D4;">
+          Pay ₹499 &amp; Download PDF →
+        </button>
+      </div>
+
+      <div class="rzp-security-note">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Secured by Razorpay · UPI, Cards, NetBanking, Wallets
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- CUSTOMIZE PLAN INTAKE & CHECKOUT MODAL -->
+<div id="customizePlanModal" class="alcons-checkout-modal" role="dialog" aria-modal="true">
+  <div class="checkout-modal-card">
+    <button class="modal-close" id="customModalClose" aria-label="Close">×</button>
+    <div class="checkout-badge">Bespoke Architectural Engineering</div>
+    <h3 class="checkout-title">Customize This Floor Plan</h3>
+    <p class="checkout-desc">Work directly with ALCONS senior architects to adapt this design to your exact site boundary, room layout needs, and family preferences.</p>
+
+    <div class="checkout-summary-box">
+      <div class="checkout-summary-plan" id="customSummaryTitle">30×40 North Duplex Villa</div>
+      <div class="checkout-summary-specs" id="customSummarySpecs">Base Typology: Residential · 1,200 sqft · 100% Vastu</div>
+      <div class="checkout-summary-price-row">
+        <span style="font-size:12px; color:var(--ink-soft);">Customization Advance Deposit:</span>
+        <span style="font-size:18px; font-weight:700; color:var(--cyan-deep);" id="customPriceLabel">₹1,499</span>
+      </div>
+    </div>
+
+    <form id="customCheckoutForm">
+      <div class="checkout-row">
+        <div class="checkout-form-group">
+          <label class="checkout-label">Full Name *</label>
+          <input type="text" id="custName" class="checkout-input" placeholder="e.g. Anita Patnaik" required>
+        </div>
+        <div class="checkout-form-group">
+          <label class="checkout-label">Phone / WhatsApp *</label>
+          <input type="tel" id="custPhone" class="checkout-input" placeholder="+91 98765 43210" required>
+        </div>
+      </div>
+      <div class="checkout-form-group">
+        <label class="checkout-label">Email Address *</label>
+        <input type="email" id="custEmail" class="checkout-input" placeholder="anita@example.com" required>
+      </div>
+      <div class="checkout-row">
+        <div class="checkout-form-group">
+          <label class="checkout-label">Your Exact Plot Dimensions (if known)</label>
+          <input type="text" id="custPlot" class="checkout-input" placeholder="e.g. 30 × 45 ft or 1,350 sqft">
+        </div>
+        <div class="checkout-form-group">
+          <label class="checkout-label">Vastu / Orientation Notes</label>
+          <input type="text" id="custVastu" class="checkout-input" placeholder="e.g. East facing road, Puja room in NE">
+        </div>
+      </div>
+      <div class="checkout-form-group">
+        <label class="checkout-label">Tell us your customization requirements</label>
+        <textarea id="custNotes" class="checkout-textarea" rows="3" placeholder="e.g. Add 1 ground floor guest room, convert rear balcony into private sitout, larger car portico..."></textarea>
+      </div>
+
+      <div class="checkout-actions">
+        <button type="button" class="btn btn-outline" id="custCancelBtn">Cancel</button>
+        <button type="submit" class="btn btn-dark" id="custSubmitBtn" style="background:#0F172A; color:#0FD8D4;">
+          Proceed to Pay ₹1,499 &amp; Book →
+        </button>
+      </div>
+
+      <div class="rzp-security-note">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        100% adjustable against full architectural project billing · Secured by Razorpay
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- PAYMENT SUCCESS & RECEIPT MODAL -->
+<div id="paymentSuccessModal" class="alcons-checkout-modal" role="dialog" aria-modal="true">
+  <div class="checkout-modal-card" style="text-align:center;">
+    <button class="modal-close" id="successModalClose" aria-label="Close">×</button>
+    <div class="checkout-success-icon">✓</div>
+    <h3 class="checkout-title" id="successTitle">Payment Verified Successfully!</h3>
+    <p class="checkout-desc" id="successSub">Your transaction has been processed securely via Razorpay.</p>
+
+    <div class="checkout-summary-box" style="text-align:left;">
+      <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+        <span style="font-size:12px; color:var(--ink-soft);">Payment Reference ID:</span>
+        <strong style="font-size:12px; color:var(--ink);" id="successPaymentId">pay_ABC12345</strong>
+      </div>
+      <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+        <span style="font-size:12px; color:var(--ink-soft);">Plan / Item:</span>
+        <strong style="font-size:12px; color:var(--ink);" id="successItemTitle">30×40 North Duplex Villa</strong>
+      </div>
+      <div style="display:flex; justify-content:space-between; border-top:1px dashed var(--line); padding-top:8px;">
+        <span style="font-size:12px; color:var(--ink-soft);">Amount Paid:</span>
+        <strong style="font-size:15px; color:var(--cyan-deep);" id="successAmount">₹499</strong>
+      </div>
+    </div>
+
+    <div id="successDownloadSection" style="margin-bottom:16px;">
+      <p style="font-size:13px; color:var(--ink-soft); margin-bottom:12px;">Your verified architectural blueprint PDF has been generated. If the download didn't start automatically, click below:</p>
+      <button id="successDownloadBtn" class="btn btn-dark" style="width:100%; justify-content:center; background:#0F172A; color:#0FD8D4;">
+        📥 Download Blueprint PDF Again
+      </button>
+    </div>
+
+    <div id="successCustomSection" style="display:none; margin-bottom:16px;">
+      <p style="font-size:13px; color:var(--ink-soft); margin-bottom:12px;">Our senior architectural team has received your customization requirements. You can also connect directly on WhatsApp with our lead architect:</p>
+      <a id="successWhatsAppBtn" href="https://wa.me/916744002210" target="_blank" class="btn btn-dark" style="width:100%; justify-content:center; background:#25D366; color:#fff; text-decoration:none;">
+        💬 Chat on WhatsApp with Architect
+      </a>
+    </div>
+
+    <button type="button" class="btn btn-outline" id="successDoneBtn" style="width:100%; justify-content:center;">
+      Done
+    </button>
+  </div>
+</div>
+
+
+<!-- FOOTER (matches main site exactly) -->
+<footer>
+  <div class="foot-top">
+    <div>
+      <h3 class="serif footer-logo">ALCONS<span style="color:var(--cyan-deep);font-style:normal;">.</span></h3>
+      <p>An architecture, interiors and construction studio located in Municipality Market Complex, Balasore, Odisha, working across India since 2011.</p>
+      <div class="social-row">
+        <a href="contact.html" class="hoverable" aria-label="ALCONS on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg></a>
+        <a href="contact.html" class="hoverable" aria-label="ALCONS on LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="7.5" y1="10.5" x2="7.5" y2="17"/><circle cx="7.5" cy="7" r="0.6" fill="#111"/><path d="M11.5 17v-4.2c0-1.4 1-2.3 2.3-2.3s2.2.9 2.2 2.3V17"/></svg></a>
+        <a href="contact.html" class="hoverable" aria-label="ALCONS on X"><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.6"><path d="M4 4l16 16M20 4L4 20"/></svg></a>
+      </div>
+    </div>
+    <div class="foot-col"><span>Studio</span><a href="about.html" class="hoverable">About</a><a href="portfolio.html" class="hoverable">Portfolio</a><a href="plans-typology.html" class="hoverable">Plans &amp; Typology</a><a href="pricing.html" class="hoverable">Pricing</a></div>
+    <div class="foot-col"><span>Services</span><a href="services.html" class="hoverable">Architecture</a><a href="services.html" class="hoverable">Interiors</a><a href="services.html" class="hoverable">Construction</a></div>
+    <div class="foot-col"><span>Connect</span><a href="contact.html" class="hoverable">Instagram</a><a href="contact.html" class="hoverable">LinkedIn</a><a href="contact.html" class="hoverable">Contact</a></div>
+  </div>
+  <div class="foot-bottom">
+    <span>&copy; 2026 ALCONS Studio. All rights reserved.</span>
+    <span>Municipality Market Complex, Balasore, Odisha</span>
+  </div>
+</footer>
+
+<button id="backTop" class="hoverable" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+/* =============================================================
+   ALCONS PLANS DATA  —  5 plans × 4 orientations × 2 types = 40
+   To replace with real data: window.ALCONS_LOAD_PLANS(yourArray)
+============================================================= */
+window.ALCONS_PLANS_DATA = [
+
+  /* =====================  FEATURED SAMPLE PLANS WITH BLUEPRINTS  ===================== */
+  { id:"sample_n1", type:"Residential", orientation:"north", size:"30x50", sqft:1500, bed:3, bath:3, floors:2, parking:1, vastu:"100% Vastu", estBudget:"₹45–52 L", budgetRaw:45,
+    title:"30×50 Modern North Luxury Duplex", facingText:"North Facing Main Road",
+    note:"Architectural sample villa featuring a wide glass facade, double-height living room, East-lit kitchen, and full Vastu compliance.",
+    features:["Glass main facade","Double-height living","Master suite balcony","Vastu Agni kitchen"],
+    image:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80",
+    blueprint:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=80" },
+
+  { id:"sample_e1", type:"Residential", orientation:"east", size:"40x50", sqft:2000, bed:4, bath:4, floors:2, parking:2, vastu:"100% Vastu", estBudget:"₹58–68 L", budgetRaw:58,
+    title:"40×50 East Sunrise Family Residence", facingText:"East Facing Road",
+    note:"Sample East-facing residence designed for maximum morning light, central courtyard garden, twin parking bays, and covered terrace.",
+    features:["Sunrise verandah","Central courtyard garden","Twin car parking","Covered roof terrace"],
+    image:"https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1000&q=80",
+    blueprint:"https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1000&q=80" },
+
+  { id:"sample_w1", type:"Commercial", orientation:"west", size:"35x60", sqft:2100, bed:0, bath:3, floors:3, parking:3, vastu:"95% Vastu", estBudget:"₹85–95 L", budgetRaw:85,
+    title:"35×60 West Commercial Showroom & Office", facingText:"West Facing Main Road",
+    note:"Sample multi-storey commercial plan with double-pane glass storefront, acoustic office suites, elevator access, and rooftop lounge.",
+    features:["Double glass storefront","Elevator shaft ready","Customer parking","Rooftop corporate lounge"],
+    image:"https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=80",
+    blueprint:"https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1000&q=80" },
+
+  /* =====================  RESIDENTIAL · NORTH  ===================== */
+  { id:"rn1", type:"Residential", orientation:"north", size:"30x40", sqft:1200, bed:3, bath:3, floors:2, parking:1, vastu:"100% Vastu", estBudget:"₹32–38 L", budgetRaw:32,
+    title:"30×40 North Duplex Villa", facingText:"North Facing Road",
+    note:"Compact duplex with a bright North-East entrance porch, double-height living bay, and a clean rear service core separated from the main living zones.",
+    features:["Double-height living","NE porch entry","Staggered balcony","Vastu compliant"],
+    image:"https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=75" },
+
+  { id:"rn2", type:"Residential", orientation:"north", size:"30x80", sqft:2400, bed:4, bath:4, floors:2, parking:2, vastu:"100% Vastu", estBudget:"₹65–75 L", budgetRaw:65,
+    title:"30×80 Courtyard Residence", facingText:"North Facing Road",
+    note:"Deep-site layout with a central sky-lit internal courtyard providing cross ventilation, shaded parking at front, and flexible multi-suite family rooms at the rear.",
+    features:["Internal sky courtyard","Cross ventilation","Walk-in wardrobes","Rear garden patio"],
+    image:"https://images.unsplash.com/photo-1600210383122-46c0f3f3e196?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=75" },
+
+  { id:"rn3", type:"Residential", orientation:"north", size:"40x60", sqft:2400, bed:4, bath:4, floors:2, parking:2, vastu:"100% Vastu", estBudget:"₹66–74 L", budgetRaw:66,
+    title:"40×60 Twin Suite Residence", facingText:"North Facing Road",
+    note:"Two master bedroom suites — one on ground, one on upper — with open island kitchen, wide 2-car portico, and a modular Vastu-compliant utility spine.",
+    features:["Dual master suites","Wide 2-car portico","Open island kitchen","Modular utility spine"],
+    image:"https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=75" },
+
+  { id:"rn4", type:"Residential", orientation:"north", size:"20x30", sqft:600, bed:2, bath:2, floors:1, parking:1, vastu:"95% Vastu", estBudget:"₹18–22 L", budgetRaw:18,
+    title:"20×30 Starter Home", facingText:"North Facing Road",
+    note:"An efficient ground-floor plan for first-time builders — no wasted space, solar-ready roof, and a charming NE entry verandah.",
+    features:["Zero dead space","NE entry verandah","Solar roof ready","1 bedroom ground suite"],
+    image:"https://images.unsplash.com/photo-1600193266218-83cfa8551b4b?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=75" },
+
+  { id:"rn5", type:"Residential", orientation:"north", size:"60x80", sqft:4800, bed:5, bath:6, floors:3, parking:3, vastu:"100% Vastu", estBudget:"₹1.4–1.8 Cr", budgetRaw:140,
+    title:"60×80 Grand North Estate", facingText:"North Facing Road",
+    note:"Palatial multi-generational villa with elevator core, interior water feature, 3-car basement, infinity terrace pool, and a dedicated service annex.",
+    features:["Elevator ready","Courtyard water body","Basement ×3 cars","Infinity terrace pool"],
+    image:"https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=75" },
+
+  /* =====================  RESIDENTIAL · SOUTH  ===================== */
+  { id:"rs1", type:"Residential", orientation:"south", size:"40x40", sqft:1600, bed:3, bath:3, floors:2, parking:1, vastu:"95% Vastu", estBudget:"₹42–48 L", budgetRaw:42,
+    title:"40×40 South Thermal-Shield Home", facingText:"South Facing Road",
+    note:"Balanced floorplan engineered with deep overhangs, protected verandahs, SW master suite placement, and thermal brick facade for effective South heat mitigation.",
+    features:["Deep shade verandah","Wind-funnel ventilation","SW master suite","Thermal brick facade"],
+    image:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600193266218-83cfa8551b4b?auto=format&fit=crop&w=800&q=75" },
+
+  { id:"rs2", type:"Residential", orientation:"south", size:"30x40", sqft:1200, bed:2, bath:2, floors:2, parking:1, vastu:"90% Vastu", estBudget:"₹30–35 L", budgetRaw:30,
+    title:"30×40 Recessed Porch Home", facingText:"South Facing Road",
+    note:"Compact 2-storey home featuring a deeply recessed South entry porch, shaded upper deck, and north-oriented bedrooms for comfortable morning light.",
+    features:["Recessed entry porch","Terrace pergola","North-lit bedrooms","Compact utility yard"],
+    image:"https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=75" },
+
+  { id:"rs3", type:"Residential", orientation:"south", size:"50x50", sqft:2500, bed:4, bath:4, floors:2, parking:2, vastu:"95% Vastu", estBudget:"₹72–84 L", budgetRaw:72,
+    title:"50×50 South Canopy Villa", facingText:"South Facing Road",
+    note:"Symmetrical villa with cantilevered solar canopy on the South face, deep landscaped setback, separate servant quarter, and four generously proportioned family bedrooms.",
+    features:["Solar canopy South face","Landscaped setback","Servant quarter","4 en-suite bedrooms"],
+    image:"https://images.unsplash.com/photo-1600614906448-68cd8b614a1e?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600210383122-46c0f3f3e196?auto=format&fit=crop&w=800&q=75" },
+
+  { id:"rs4", type:"Residential", orientation:"south", size:"30x80", sqft:2400, bed:4, bath:4, floors:2, parking:2, vastu:"90% Vastu", estBudget:"₹60–70 L", budgetRaw:60,
+    title:"30×80 Deep South Passage Home", facingText:"South Facing Road",
+    note:"Deep site plan with a central light passage separating public and private zones, rear garden terrace, and a South-shielded entry with a louvred facade screen.",
+    features:["Central light passage","Louvred facade screen","Rear garden terrace","Zone separation"],
+    image:"https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=75" },
+
+  { id:"rs5", type:"Residential", orientation:"south", size:"20x30", sqft:600, bed:2, bath:1, floors:1, parking:1, vastu:"90% Vastu", estBudget:"₹16–20 L", budgetRaw:16,
+    title:"20×30 South Compact Starter", facingText:"South Facing Road",
+    note:"Budget-first single-storey plan with a shaded front porch for heat control, a NE-oriented kitchen, and a future-ready foundation for a second floor.",
+    features:["Shaded front porch","NE kitchen zone","Future-ready foundation","Low maintenance"],
+    image:"https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=75" },
+
+  /* =====================  RESIDENTIAL · EAST  ===================== */
+  { id:"re1", type:"Residential", orientation:"east", size:"30x30", sqft:900, bed:2, bath:2, floors:1, parking:1, vastu:"100% Vastu", estBudget:"₹24–28 L", budgetRaw:24,
+    title:"30×30 East Compact Solar Home", facingText:"East Facing Road",
+    note:"Single-storey square footprint planned for vibrant morning light, zero structural dead space, open kitchen layout, and a solar-ready roof.",
+    features:["Morning sun verandah","Open kitchen layout","No structural waste","Solar roof ready"],
+    image:"https://images.unsplash.com/photo-1600193266218-83cfa8551b4b?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=75" },
+
+  { id:"re2", type:"Residential", orientation:"east", size:"40x60", sqft:2400, bed:4, bath:4, floors:2, parking:2, vastu:"100% Vastu", estBudget:"₹68–78 L", budgetRaw:68,
+    title:"40×60 East Morning Light Villa", facingText:"East Facing Road",
+    note:"Spacious family residence welcoming morning sun into dining and living areas, with a home theater nook, Vastu Agni kitchen zone, and private rear lawn.",
+    features:["East master bay","Home theater nook","Vastu Agni kitchen","Private rear lawn"],
+    image:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=75" },
+
+  { id:"re3", type:"Residential", orientation:"east", size:"30x40", sqft:1200, bed:3, bath:3, floors:2, parking:1, vastu:"100% Vastu", estBudget:"₹34–39 L", budgetRaw:34,
+    title:"30×40 East Atrium Duplex", facingText:"East Facing Road",
+    note:"East-facing compact duplex with a central double-height skylight atrium pulling morning sun into the core, Vastu-optimized kitchen, and a balcony garden.",
+    features:["Central skylight atrium","East main entrance","Compact stair core","Balcony garden"],
+    image:"https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=75" },
+
+  { id:"re4", type:"Residential", orientation:"east", size:"50x50", sqft:2500, bed:4, bath:4, floors:2, parking:2, vastu:"100% Vastu", estBudget:"₹75–88 L", budgetRaw:75,
+    title:"50×50 East Garden Pavilion", facingText:"East Facing Road",
+    note:"Symmetrical villa with a wrap-around garden corridor, skylit stair hall, separate servant quarter, and a Vastu water feature at the NE corner.",
+    features:["Wrap-around garden","Skylit stair hall","Servant quarter","Vastu water feature"],
+    image:"https://images.unsplash.com/photo-1600614906448-68cd8b614a1e?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600210383122-46c0f3f3e196?auto=format&fit=crop&w=800&q=75" },
+
+  { id:"re5", type:"Residential", orientation:"east", size:"20x30", sqft:600, bed:2, bath:1, floors:2, parking:1, vastu:"95% Vastu", estBudget:"₹20–24 L", budgetRaw:20,
+    title:"20×30 East Narrow Townhouse", facingText:"East Facing Road",
+    note:"Slim urban plot design with stacked floors, morning sun living room at ground, bedrooms above, and a rooftop terrace for open-air living on a budget.",
+    features:["Stacked floor plan","Morning sun living","Rooftop terrace","Budget first-home"],
+    image:"https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=75" },
+
+  /* =====================  RESIDENTIAL · WEST  ===================== */
+  { id:"rw1", type:"Residential", orientation:"west", size:"50x50", sqft:2500, bed:4, bath:4, floors:2, parking:2, vastu:"95% Vastu", estBudget:"₹78–90 L", budgetRaw:78,
+    title:"50×50 West Louver Screen Villa", facingText:"West Facing Road",
+    note:"Premium villa utilizing vertical terracotta louver screens and a West buffer balcony for afternoon heat reduction, with generous south-facing setback lawns.",
+    features:["Vertical louver screen","West buffer balcony","Spacious family lounge","Setback lawn"],
+    image:"https://images.unsplash.com/photo-1600614906448-68cd8b614a1e?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600210383122-46c0f3f3e196?auto=format&fit=crop&w=800&q=75" },
+
+  { id:"rw2", type:"Residential", orientation:"west", size:"30x40", sqft:1200, bed:3, bath:2, floors:2, parking:1, vastu:"90% Vastu", estBudget:"₹33–38 L", budgetRaw:33,
+    title:"30×40 West Deep Verandah Home", facingText:"West Facing Road",
+    note:"Compact home with a deep insulated front porch shielding the West face, East-oriented bedrooms catching morning light, and a terrace gazebo above the service block.",
+    features:["Insulated front porch","East-oriented bedrooms","Terrace gazebo","Utility duct access"],
+    image:"https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=75" },
+
+  { id:"rw3", type:"Residential", orientation:"west", size:"40x40", sqft:1600, bed:3, bath:3, floors:2, parking:1, vastu:"90% Vastu", estBudget:"₹44–50 L", budgetRaw:44,
+    title:"40×40 West Shade Fin Duplex", facingText:"West Facing Road",
+    note:"Modern duplex with deep horizontal shade fins on all West openings, rainwater harvesting system, central dining hub, and a separate guest floor.",
+    features:["Horizontal shade fins","Rainwater harvester","Central dining hub","Guest floor"],
+    image:"https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=75" },
+
+  { id:"rw4", type:"Residential", orientation:"west", size:"30x80", sqft:2400, bed:4, bath:4, floors:2, parking:2, vastu:"95% Vastu", estBudget:"₹65–75 L", budgetRaw:65,
+    title:"30×80 West Courtyard Manor", facingText:"West Facing Road",
+    note:"Deep-site plan with an internal courtyard buffer between the West road and the principal living zones, screened parking court, and rear private garden suite.",
+    features:["Internal courtyard buffer","Screened parking court","Rear private garden","Double height dining"],
+    image:"https://images.unsplash.com/photo-1600210383122-46c0f3f3e196?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=75" },
+
+  { id:"rw5", type:"Residential", orientation:"west", size:"20x30", sqft:600, bed:2, bath:1, floors:2, parking:1, vastu:"88% Vastu", estBudget:"₹17–21 L", budgetRaw:17,
+    title:"20×30 West Budget Duplex", facingText:"West Facing Road",
+    note:"Narrow-site low-budget duplex with shading screens on the West face, two bedrooms stacked above a living-kitchen ground floor, and a rooftop clothesline terrace.",
+    features:["West shading screen","Stacked bedrooms","Ground floor open plan","Rooftop terrace"],
+    image:"https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=75" },
+
+  /* =====================  COMMERCIAL · NORTH  ===================== */
+  { id:"cn1", type:"Commercial", orientation:"north", size:"40x60", sqft:4800, bed:0, bath:4, floors:3, parking:4, vastu:"100% Vastu", estBudget:"₹1.1–1.4 Cr", budgetRaw:110,
+    title:"40×60 North Retail &amp; Office Hub", facingText:"North Facing Road",
+    note:"Multi-level commercial complex with a ground floor glass retail storefront, open office floors above, dedicated customer parking, and an elevator shaft ready for installation.",
+    features:["Glass retail storefront","Elevator shaft ready","Customer parking ×4","Fire safety staircase"],
+    image:"https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=75" },
+
+  { id:"cn2", type:"Commercial", orientation:"north", size:"60x80", sqft:9600, bed:0, bath:8, floors:4, parking:10, vastu:"100% Vastu", estBudget:"₹2.4–2.9 Cr", budgetRaw:240,
+    title:"60×80 North Commercial Plaza", facingText:"North Facing Road",
+    note:"Flagship multi-tenant commercial plaza with twin elevator banks, 10+ vehicle basement parking, solar rooftop array, and a dramatic central atrium plaza at ground level.",
+    features:["Twin elevator banks","Basement ×10 cars","Solar rooftop array","Central atrium plaza"],
+    image:"https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=75" },
+
+  { id:"cn3", type:"Commercial", orientation:"north", size:"30x40", sqft:2400, bed:0, bath:3, floors:2, parking:2, vastu:"100% Vastu", estBudget:"₹55–65 L", budgetRaw:55,
+    title:"30×40 North Professional Suites", facingText:"North Facing Road",
+    note:"Compact modern office floorplan for law firms, accounting practices, or architectural consultancies — reception lounge, executive conference room, server closet.",
+    features:["Conference room","Reception lounge","Server &amp; pantry closet","Fiber entry"],
+    image:"https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=75" },
+
+  { id:"cn4", type:"Commercial", orientation:"north", size:"40x40", sqft:3200, bed:0, bath:3, floors:2, parking:3, vastu:"95% Vastu", estBudget:"₹72–85 L", budgetRaw:72,
+    title:"40×40 North Clinic &amp; Pharmacy", facingText:"North Facing Road",
+    note:"Healthcare-ready commercial plan with ramp access, acoustic consultation rooms, HVAC duct pre-planning, clean pharmacy zone at ground, and GP suites above.",
+    features:["Ramp access","Acoustic consult rooms","HVAC pre-plan","Pharmacy zone GF"],
+    image:"https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600210383122-46c0f3f3e196?auto=format&fit=crop&w=800&q=75" },
+
+  { id:"cn5", type:"Commercial", orientation:"north", size:"20x30", sqft:1200, bed:0, bath:2, floors:2, parking:1, vastu:"90% Vastu", estBudget:"₹28–35 L", budgetRaw:28,
+    title:"20×30 North Kiosk Shop", facingText:"North Facing Road",
+    note:"Compact two-storey commercial shell for local retail at ground and a storage mezzanine above — fast to construct, low-cost, and easily adaptable.",
+    features:["Retail GF shell","Storage mezzanine","Wide frontage","Low construction cost"],
+    image:"https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=75" },
+
+  /* =====================  COMMERCIAL · SOUTH  ===================== */
+  { id:"cs1", type:"Commercial", orientation:"south", size:"30x80", sqft:3600, bed:0, bath:4, floors:3, parking:3, vastu:"95% Vastu", estBudget:"₹95 L–1.2 Cr", budgetRaw:95,
+    title:"30×80 South Corporate Showroom", facingText:"South Facing Road",
+    note:"Deep-site commercial showroom with a double-height display atrium on the street face, mezzanine office floor, LED facade mounting strips, and a rear service loading bay.",
+    features:["Double height atrium","Mezzanine office","LED facade mounting","Loading bay"],
+    image:"https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=75" },
+
+  { id:"cs2", type:"Commercial", orientation:"south", size:"40x60", sqft:4800, bed:0, bath:5, floors:3, parking:4, vastu:"90% Vastu", estBudget:"₹1.1–1.3 Cr", budgetRaw:110,
+    title:"40×60 South Office Tower", facingText:"South Facing Road",
+    note:"Shaded South facade with deep brise-soleil fins, open-plan office floors, two-stair code-compliant exit cores, and a rooftop terrace lounge for staff.",
+    features:["Brise-soleil fins","Open-plan floors","Dual exit stairs","Rooftop staff lounge"],
+    image:"https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600210383122-46c0f3f3e196?auto=format&fit=crop&w=800&q=75" },
+
+  { id:"cs3", type:"Commercial", orientation:"south", size:"40x40", sqft:3200, bed:0, bath:3, floors:2, parking:2, vastu:"90% Vastu", estBudget:"₹75–90 L", budgetRaw:75,
+    title:"40×40 South Mixed Retail", facingText:"South Facing Road",
+    note:"Two-storey mixed retail complex with three independent shop units at ground, a shared lobby staircase, and an upper-floor co-working space with natural north light.",
+    features:["3 independent shop units","Shared lobby stair","Co-working upper floor","North-lit workspace"],
+    image:"https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=75" },
+
+  { id:"cs4", type:"Commercial", orientation:"south", size:"50x50", sqft:5000, bed:0, bath:6, floors:3, parking:5, vastu:"92% Vastu", estBudget:"₹1.2–1.5 Cr", budgetRaw:120,
+    title:"50×50 South Hospitality Hub", facingText:"South Facing Road",
+    note:"Purpose-designed for hotel or banquet use — ground floor event space with retractable partitions, kitchenette, and upper-floor suites with South-shaded gallery corridors.",
+    features:["Retractable partitions","Event kitchenette","Upper suites","South-shaded corridor"],
+    image:"https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600210383122-46c0f3f3e196?auto=format&fit=crop&w=800&q=75" },
+
+  { id:"cs5", type:"Commercial", orientation:"south", size:"20x30", sqft:1200, bed:0, bath:2, floors:2, parking:1, vastu:"88% Vastu", estBudget:"₹30–38 L", budgetRaw:30,
+    title:"20×30 South Street Boutique", facingText:"South Facing Road",
+    note:"Compact boutique or salon shell with a shaded South canopy at entry, glazed shopfront with UV film, and an upper-floor stockroom with service access.",
+    features:["South entry canopy","UV glazed shopfront","Upper stockroom","Low build cost"],
+    image:"https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=75" },
+
+  /* =====================  COMMERCIAL · EAST  ===================== */
+  { id:"ce1", type:"Commercial", orientation:"east", size:"50x50", sqft:5000, bed:0, bath:6, floors:2, parking:6, vastu:"100% Vastu", estBudget:"₹1.3–1.6 Cr", budgetRaw:130,
+    title:"50×50 East Medical &amp; Clinic Suite", facingText:"East Facing Road",
+    note:"Planned specifically for healthcare clinics — ramp access, acoustic consultation rooms, full HVAC duct planning, radiology lab zone, and a dedicated ambulance bay.",
+    features:["Ramp &amp; stretcher access","Acoustic consult rooms","HVAC duct plan","Ambulance bay"],
+    image:"https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=75" },
+
+  { id:"ce2", type:"Commercial", orientation:"east", size:"30x40", sqft:2400, bed:0, bath:3, floors:2, parking:2, vastu:"100% Vastu", estBudget:"₹55–65 L", budgetRaw:55,
+    title:"30×40 East Professional Office", facingText:"East Facing Road",
+    note:"Modern office shell with an East-facing glazed reception zone catching morning light, private cabin layout, and an open-plan zone for teams at the rear.",
+    features:["East glazed reception","Private cabins","Team open plan","Morning-lit workspace"],
+    image:"https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=75" },
+
+  { id:"ce3", type:"Commercial", orientation:"east", size:"40x60", sqft:4800, bed:0, bath:4, floors:3, parking:4, vastu:"95% Vastu", estBudget:"₹1.0–1.25 Cr", budgetRaw:100,
+    title:"40×60 East Tech Campus Shell", facingText:"East Facing Road",
+    note:"Three-storey tech campus shell with flexible floor plates, central atrium with skylight, dedicated server room on each floor, and a basement parking garage.",
+    features:["Flexible floor plates","Central skylight atrium","Per-floor server room","Basement garage"],
+    image:"https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600210383122-46c0f3f3e196?auto=format&fit=crop&w=800&q=75" },
+
+  { id:"ce4", type:"Commercial", orientation:"east", size:"40x40", sqft:3200, bed:0, bath:3, floors:2, parking:2, vastu:"92% Vastu", estBudget:"₹70–82 L", budgetRaw:70,
+    title:"40×40 East Café &amp; Co-Work", facingText:"East Facing Road",
+    note:"Vibrant East-facing café and co-working building with a morning-sun outdoor terrace at ground, commercial kitchen, and a quiet upstairs co-working loft.",
+    features:["Morning sun terrace","Commercial kitchen","Quiet co-working loft","East glazed facade"],
+    image:"https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=75" },
+
+  { id:"ce5", type:"Commercial", orientation:"east", size:"20x30", sqft:1200, bed:0, bath:2, floors:2, parking:1, vastu:"90% Vastu", estBudget:"₹28–34 L", budgetRaw:28,
+    title:"20×30 East Salon &amp; Spa Shell", facingText:"East Facing Road",
+    note:"Purpose-designed for beauty salons and day spas — East-facing reception with morning-light ambience, treatment rooms at the rear, and a shaded service exit.",
+    features:["Morning-light reception","Treatment rooms","Shaded service exit","Low build cost"],
+    image:"https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=75" },
+
+  /* =====================  COMMERCIAL · WEST  ===================== */
+  { id:"cw1", type:"Commercial", orientation:"west", size:"40x40", sqft:3200, bed:0, bath:3, floors:2, parking:2, vastu:"90% Vastu", estBudget:"₹70–85 L", budgetRaw:70,
+    title:"40×40 West Café &amp; Studio", facingText:"West Facing Road",
+    note:"Vibrant hospitality building with a shaded ground-floor outdoor deck seating zone, commercial kitchen ventilation shaft, and an upper-floor creative co-working open plan.",
+    features:["Outdoor deck seating","Commercial kitchen vent","Co-working upper floor","Terrace dining ready"],
+    image:"https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600210383122-46c0f3f3e196?auto=format&fit=crop&w=800&q=75" },
+
+  { id:"cw2", type:"Commercial", orientation:"west", size:"30x80", sqft:3600, bed:0, bath:4, floors:3, parking:3, vastu:"90% Vastu", estBudget:"₹88 L–1.1 Cr", budgetRaw:88,
+    title:"30×80 West Event Centre", facingText:"West Facing Road",
+    note:"Deep-plot event centre with a West-shaded grand entrance foyer, three stackable function halls, a commercial catering kitchen, and rooftop open-air venue.",
+    features:["Grand entrance foyer","3 stackable halls","Catering kitchen","Rooftop open venue"],
+    image:"https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=75" },
+
+  { id:"cw3", type:"Commercial", orientation:"west", size:"50x50", sqft:5000, bed:0, bath:5, floors:3, parking:5, vastu:"90% Vastu", estBudget:"₹1.2–1.5 Cr", budgetRaw:120,
+    title:"50×50 West Showroom &amp; Offices", facingText:"West Facing Road",
+    note:"Mixed-use: ground floor automobile or furniture showroom with double-height display space, two upper floors of leased office suites, and a West-buffered parking court.",
+    features:["Double height showroom","Leased office suites","West buffer parking","Elevator ready"],
+    image:"https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600210383122-46c0f3f3e196?auto=format&fit=crop&w=800&q=75" },
+
+  { id:"cw4", type:"Commercial", orientation:"west", size:"40x60", sqft:4800, bed:0, bath:4, floors:3, parking:4, vastu:"88% Vastu", estBudget:"₹1.0–1.2 Cr", budgetRaw:100,
+    title:"40×60 West Hotel Shell", facingText:"West Facing Road",
+    note:"Three-star hotel shell plan with 18 guest rooms, shaded West corridor balconies, a ground-floor restaurant, reception lobby, and a rooftop pool terrace.",
+    features:["18 guest rooms","Shaded West balconies","Ground restaurant","Rooftop pool terrace"],
+    image:"https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=75" },
+
+  { id:"cw5", type:"Commercial", orientation:"west", size:"20x30", sqft:1200, bed:0, bath:2, floors:2, parking:1, vastu:"85% Vastu", estBudget:"₹29–36 L", budgetRaw:29,
+    title:"20×30 West Corner Shop", facingText:"West Facing Road",
+    note:"Tiny-footprint corner commercial unit — West entry with a fixed sun shade, ground-level retail shell, and an owner-operator storage mezzanine above.",
+    features:["Corner plot advantage","Fixed sun shade","Retail shell GF","Storage mezzanine"],
+    image:"https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=75",
+    blueprint:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=75" }
+];
+
+/* ========================================================
+   ENGINE
+======================================================== */
+(function(){
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* ────────────── Preloader (exact match main site) ────────────── */
+  (function () {
+    const pre = document.getElementById('preloader');
+    const fill = document.getElementById('plFill');
+    const pct = document.getElementById('plPct');
+    let obj = { v: 0 };
+    const tl = gsap.timeline({
+      onComplete: () => {
+        gsap.to(pre, { opacity: 0, duration: .7, ease: 'power2.out', onComplete: () => { pre.style.display = 'none'; ScrollTrigger.refresh(); } });
+      }
+    });
+    tl.to(obj, {
+      v: 100, duration: 1.4, ease: 'power1.inOut',
+      onUpdate: () => {
+        const v = Math.round(obj.v);
+        fill.style.width = v + '%';
+        pct.textContent = v + '%';
+      }
+    });
+  })();
+
+  /* ────────────── Scroll progress + back to top (exact match main site) ────────────── */
+  const scrollProgress = document.getElementById('scrollProgress');
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const p = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    scrollProgress.style.width = p + '%';
+    backTop.classList.toggle('show', window.scrollY > 700);
+  });
+  backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  /* ────────────── Custom cursor (exact match main site — .hoverable pattern) ────────────── */
+  const cur = document.getElementById('cur');
+  const curRing = document.getElementById('curRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  window.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cur.style.left = mx + 'px'; cur.style.top = my + 'px';
+  });
+  gsap.ticker.add(() => {
+    rx += (mx - rx) * 0.18; ry += (my - ry) * 0.18;
+    curRing.style.left = rx + 'px'; curRing.style.top = ry + 'px';
+  });
+  document.querySelectorAll('.hoverable, .plan-card, .plan-view-btn, .plan-fav-btn, .chip, .orient-option, .plans-type-pill').forEach(el => {
+    el.addEventListener('mouseenter', () => { cur.classList.add('big'); curRing.classList.add('big'); });
+    el.addEventListener('mouseleave', () => { cur.classList.remove('big'); curRing.classList.remove('big'); });
+  });
+
+  /* ────────────── Navbar (exact match main site) ────────────── */
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); });
+
+  /* Nav pill slide */
+  const navLinks = document.querySelectorAll('#navLinks a');
+  const navPill = document.getElementById('navPill');
+  function movePill(el) {
+    if (!navPill || !el) return;
+    navPill.style.width = el.offsetWidth + 'px';
+    navPill.style.transform = `translateX(${el.offsetLeft}px)`;
+  }
+  navLinks.forEach(a => { a.addEventListener('mouseenter', () => movePill(a)); });
+  const navLinksParent = document.getElementById('navLinks');
+  const activePillLink = document.querySelector('#navLinks a[data-page-link="plans"]');
+  if (activePillLink) { activePillLink.classList.add('active'); window.addEventListener('load', () => movePill(activePillLink)); }
+  if (navLinksParent) {
+    navLinksParent.addEventListener('mouseleave', () => { if (activePillLink) movePill(activePillLink); else if (navPill) navPill.style.width = '0'; });
+  }
+
+  /* Mobile menu (exact match main site) */
+  const navToggle = document.getElementById('navToggle');
+  const navMobileOverlay = document.getElementById('navMobileOverlay');
+  function toggleMobileMenu() {
+    if (!navToggle || !navMobileOverlay) return;
+    const isOpen = navToggle.classList.toggle('is-open');
+    navMobileOverlay.classList.toggle('is-open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  }
+  if (navToggle && navMobileOverlay) {
+    navToggle.addEventListener('click', toggleMobileMenu);
+    navMobileOverlay.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => { if (navToggle.classList.contains('is-open')) toggleMobileMenu(); });
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navToggle.classList.contains('is-open')) toggleMobileMenu();
+    });
+  }
+
+  /* ────────────── Reveals ────────────── */
+  gsap.utils.toArray('.reveal').forEach(el => {
+    gsap.fromTo(el, { opacity: 0, y: 36 }, { opacity: 1, y: 0, duration: .85, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 91%', once: true } });
+  });
+  /* ══════════════════  PLANS ENGINE  ══════════════════ */
+  const dataset=window.ALCONS_PLANS_DATA||[];
+  let activeType='Residential', activeOrient='north', activeSize='all', searchQuery='', activeSort='default';
+  let favSet=new Set();
+  try{ const s=localStorage.getItem('alcons_favs'); if(s)favSet=new Set(JSON.parse(s)); }catch(e){}
+
+  const grid=document.getElementById('plansGrid');
+  const countEl=document.getElementById('countNum');
+
+  function saveFavs(){ try{ localStorage.setItem('alcons_favs',JSON.stringify([...favSet])); }catch(e){} }
+
+  /* Update orientation badges */
+  function updateOrientBadges(){
+    ['north','south','east','west'].forEach(d=>{
+      const n=dataset.filter(p=>p.type===activeType&&p.orientation===d).length;
+      const el=document.getElementById('ob-'+d);
+      if(el)el.textContent=n;
+    });
+  }
+
+  /* Update type counts */
+  function updateTypeCounts(){
+    document.getElementById('resCount').textContent=dataset.filter(p=>p.type==='Residential').length;
+    document.getElementById('comCount').textContent=dataset.filter(p=>p.type==='Commercial').length;
+  }
+
+  /* Filter + sort */
+  function getFiltered(){
+    let list=dataset.filter(p=>{
+      if(p.type!==activeType) return false;
+      if(p.orientation!==activeOrient) return false;
+      if(activeSize!=='all'&&p.size!==activeSize) return false;
+      if(searchQuery){
+        const hay=[p.title,p.note,p.size,p.vastu,p.facingText,...(p.features||[])].join(' ').toLowerCase();
+        if(!hay.includes(searchQuery)) return false;
+      }
+      return true;
+    });
+    if(activeSort==='sqft-asc') list.sort((a,b)=>a.sqft-b.sqft);
+    else if(activeSort==='sqft-desc') list.sort((a,b)=>b.sqft-a.sqft);
+    else if(activeSort==='bed-desc') list.sort((a,b)=>b.bed-a.bed);
+    else if(activeSort==='price-asc') list.sort((a,b)=>a.budgetRaw-b.budgetRaw);
+    return list;
+  }
+
+  /* Render cards */
+  function renderCards(){
+    const plans=getFiltered();
+    countEl.textContent=plans.length;
+    grid.innerHTML='';
+
+    if(!plans.length){
+      grid.innerHTML='<div class="plans-empty"><h3>No matching plans found</h3><p>Try adjusting orientation, size filter, or clearing your search.</p></div>';
+      return;
+    }
+
+    plans.forEach((plan,i)=>{
+      const isFav=favSet.has(plan.id);
+      const isRes=plan.type==='Residential';
+      const specs=isRes
+        ?`<span class="spec-pill">${plan.bed} Bed</span><span class="spec-pill">${plan.bath} Bath</span><span class="spec-pill">${plan.floors}F</span><span class="spec-pill">${plan.parking} 🚗</span>`
+        :`<span class="spec-pill">${plan.sqft.toLocaleString()} sqft</span><span class="spec-pill">${plan.floors} Floors</span><span class="spec-pill">${plan.parking} 🚗</span>`;
+
+      const card=document.createElement('article');
+      card.className='plan-card';
+      card.dataset.id=plan.id;
+      card.innerHTML=`
+        <div class="plan-card-img">
+          <img src="${plan.image}" alt="${plan.title}" loading="lazy">
+          <button class="plan-fav-btn${isFav?' is-fav':''}" data-fav="${plan.id}" aria-label="Save plan" type="button">${isFav?'♥':'♡'}</button>
+          <span class="plan-type-badge">${plan.type}</span>
+          <span class="plan-vastu-badge">${plan.vastu}</span>
+        </div>
+        <div class="plan-card-body">
+          <div class="plan-card-orient">${plan.facingText}</div>
+          <h3 class="plan-card-title">${plan.title}</h3>
+          <p class="plan-card-sub">${plan.size} · ${plan.sqft.toLocaleString()} sqft</p>
+          <div class="plan-card-specs">${specs}</div>
+          <div class="plan-card-footer">
+            <span class="plan-card-price">${plan.estBudget}</span>
+            <button class="plan-view-btn" data-view="${plan.id}" type="button">
+              View Details
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>`;
+      grid.appendChild(card);
+
+      gsap.fromTo(card,{opacity:0,y:16,scale:.985},{opacity:1,y:0,scale:1,duration:.4,ease:'power3.out',delay:Math.min(i*.055,.3)});
+
+      card.querySelector('[data-fav]').addEventListener('click',e=>{
+        e.stopPropagation();
+        const id=e.currentTarget.dataset.fav;
+        if(favSet.has(id)){favSet.delete(id);e.currentTarget.classList.remove('is-fav');e.currentTarget.textContent='♡';}
+        else{favSet.add(id);e.currentTarget.classList.add('is-fav');e.currentTarget.textContent='♥';}
+        saveFavs();
+        gsap.fromTo(e.currentTarget,{scale:1.45},{scale:1,duration:.35,ease:'back.out(2)'});
+      });
+
+      card.querySelector('[data-view]').addEventListener('click',()=>openModal(plan));
+      card.addEventListener('click',e=>{ if(!e.target.closest('button'))openModal(plan); });
+    });
+  }
+
+  /* ── Type pills ── */
+  document.getElementById('typePills').addEventListener('click',e=>{
+    const btn=e.target.closest('.plans-type-pill');
+    if(!btn)return;
+    activeType=btn.dataset.type;
+    document.querySelectorAll('.plans-type-pill').forEach(p=>p.classList.toggle('active',p===btn));
+    updateOrientBadges();
+    renderCards();
+  });
+
+  /* ── Orientation ── */
+  document.getElementById('orientPanel').addEventListener('click',e=>{
+    const btn=e.target.closest('.orient-option');
+    if(!btn)return;
+    activeOrient=btn.dataset.orient;
+    document.querySelectorAll('.orient-option').forEach(o=>o.classList.toggle('active',o===btn));
+    renderCards();
+  });
+
+  /* ── Size chips ── */
+  document.getElementById('sizeChips').addEventListener('click',e=>{
+    const btn=e.target.closest('.chip');
+    if(!btn)return;
+    activeSize=btn.dataset.size;
+    document.querySelectorAll('#sizeChips .chip').forEach(c=>c.classList.toggle('active',c===btn));
+    renderCards();
+  });
+
+  /* ── Search — fires on every keystroke ── */
+  const searchInput=document.getElementById('planSearch');
+  searchInput.addEventListener('input',e=>{
+    searchQuery=e.target.value.trim().toLowerCase();
+    renderCards();
+  });
+  /* Also clear on Escape */
+  searchInput.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){ searchInput.value=''; searchQuery=''; renderCards(); searchInput.blur(); }
+  });
+
+  /* ── Sort ── */
+  document.getElementById('planSort').addEventListener('change',e=>{ activeSort=e.target.value; renderCards(); });
+
+  /* ── MODAL ── */
+  const modal=document.getElementById('planModal');
+  let currentPlan=null;
+
+  function openModal(plan){
+    currentPlan=plan;
+    document.getElementById('modalImg').src=plan.image;
+    document.getElementById('modalImg').alt=plan.title;
+    document.getElementById('modalType').textContent=`${plan.type} · ${plan.facingText}`;
+    document.getElementById('modalTitle').textContent=plan.title;
+    document.getElementById('modalDesc').textContent=plan.note;
+    document.getElementById('modalCta').href=`contact.html?plan=${encodeURIComponent(plan.title)}#contact`;
+    document.getElementById('viewRender').classList.add('active');
+    document.getElementById('viewBlueprint').classList.remove('active');
+
+    const isRes=plan.type==='Residential';
+    document.getElementById('modalSpecs').innerHTML=[
+      `<div class="modal-spec"><strong>${plan.size}</strong><span>Plot Dimensions</span></div>`,
+      `<div class="modal-spec"><strong>${plan.sqft.toLocaleString()} sqft</strong><span>Built-up Area</span></div>`,
+      isRes
+        ?`<div class="modal-spec"><strong>${plan.bed} Bed / ${plan.bath} Bath</strong><span>Configuration</span></div>`
+        :`<div class="modal-spec"><strong>${plan.floors} Floors</strong><span>Building Levels</span></div>`,
+      `<div class="modal-spec"><strong>${plan.vastu}</strong><span>Vastu Alignment</span></div>`,
+      `<div class="modal-spec"><strong>${plan.estBudget}</strong><span>Est. Build Cost</span></div>`,
+      `<div class="modal-spec"><strong>${plan.parking} Car${plan.parking!==1?'s':''}</strong><span>Parking</span></div>`,
+    ].join('');
+
+    document.getElementById('modalFeatures').innerHTML=(plan.features||[]).map(f=>`<span class="modal-feature-tag">${f}</span>`).join('');
+    modal.classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+
+  function closeModal(){ modal.classList.remove('open'); document.body.style.overflow=''; }
+
+  document.getElementById('modalClose').addEventListener('click',closeModal);
+  modal.addEventListener('click',e=>{ if(e.target===modal)closeModal(); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&modal.classList.contains('open'))closeModal(); });
+
+  document.getElementById('viewRender').addEventListener('click',()=>{
+    if(!currentPlan)return;
+    const img=document.getElementById('modalImg');
+    gsap.to(img,{opacity:0,duration:.18,onComplete:()=>{ img.src=currentPlan.image; gsap.to(img,{opacity:1,duration:.28}); }});
+    document.getElementById('viewRender').classList.add('active');
+    document.getElementById('viewBlueprint').classList.remove('active');
+  });
+  document.getElementById('viewBlueprint').addEventListener('click',()=>{
+    if(!currentPlan)return;
+    const img=document.getElementById('modalImg');
+    gsap.to(img,{opacity:0,duration:.18,onComplete:()=>{ img.src=currentPlan.blueprint; gsap.to(img,{opacity:1,duration:.28}); }});
+    document.getElementById('viewBlueprint').classList.add('active');
+    document.getElementById('viewRender').classList.remove('active');
+  });
+
+  /* ── RAZORPAY CHECKOUT & MODAL CONTROLS ── */
+  const dlModal = document.getElementById('downloadPlanModal');
+  const custModal = document.getElementById('customizePlanModal');
+  const successModal = document.getElementById('paymentSuccessModal');
+  let lastCompletedOrder = null;
+
+  function closeDlModal() { if (dlModal) dlModal.classList.remove('open'); }
+  function closeCustModal() { if (custModal) custModal.classList.remove('open'); }
+  function closeSuccessModal() { if (successModal) successModal.classList.remove('open'); }
+
+  // Open Download Modal
+  document.getElementById('modalDl').addEventListener('click', () => {
+    if (!currentPlan) return;
+    document.getElementById('dlSummaryTitle').textContent = currentPlan.title;
+    document.getElementById('dlSummarySpecs').textContent = `${currentPlan.type} · ${currentPlan.facingText} · ${currentPlan.sqft ? currentPlan.sqft.toLocaleString() + ' sqft' : ''} · ${currentPlan.vastu}`;
+    const price = (window.AlconsPayment && window.AlconsPayment.config) ? window.AlconsPayment.config.downloadPrice : 499;
+    document.getElementById('dlPriceLabel').textContent = `₹${price}`;
+    document.getElementById('dlSubmitBtn').innerHTML = `Pay ₹${price} & Download PDF →`;
+    dlModal.classList.add('open');
+  });
+
+  // Open Customize Modal
+  document.getElementById('modalCta').addEventListener('click', () => {
+    if (!currentPlan) return;
+    document.getElementById('customSummaryTitle').textContent = currentPlan.title;
+    document.getElementById('customSummarySpecs').textContent = `Base Typology: ${currentPlan.type} · ${currentPlan.size} · ${currentPlan.sqft ? currentPlan.sqft.toLocaleString() + ' sqft' : ''} · ${currentPlan.vastu}`;
+    const price = (window.AlconsPayment && window.AlconsPayment.config) ? window.AlconsPayment.config.customizePrice : 1499;
+    document.getElementById('customPriceLabel').textContent = `₹${price}`;
+    document.getElementById('custSubmitBtn').innerHTML = `Proceed to Pay ₹${price} & Book →`;
+    custModal.classList.add('open');
+  });
+
+  // Close handlers
+  document.getElementById('dlModalClose').addEventListener('click', closeDlModal);
+  document.getElementById('dlCancelBtn').addEventListener('click', closeDlModal);
+  dlModal.addEventListener('click', (e) => { if (e.target === dlModal) closeDlModal(); });
+
+  document.getElementById('customModalClose').addEventListener('click', closeCustModal);
+  document.getElementById('custCancelBtn').addEventListener('click', closeCustModal);
+  custModal.addEventListener('click', (e) => { if (e.target === custModal) closeCustModal(); });
+
+  document.getElementById('successModalClose').addEventListener('click', closeSuccessModal);
+  document.getElementById('successDoneBtn').addEventListener('click', closeSuccessModal);
+  successModal.addEventListener('click', (e) => { if (e.target === successModal) closeSuccessModal(); });
+
+  // Download Checkout Form Submission
+  document.getElementById('dlCheckoutForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!currentPlan || !window.AlconsPayment) return;
+
+    const clientInfo = {
+      name: document.getElementById('dlName').value.trim(),
+      email: document.getElementById('dlEmail').value.trim(),
+      phone: document.getElementById('dlPhone').value.trim()
+    };
+
+    const submitBtn = document.getElementById('dlSubmitBtn');
+    submitBtn.disabled = true;
+    const origText = submitBtn.innerHTML;
+    submitBtn.innerHTML = 'Connecting Gateway...';
+
+    window.AlconsPayment.initiatePlanDownloadPayment(currentPlan, clientInfo, {
+      onSuccess: (orderRecord) => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = origText;
+        closeDlModal();
+        showOrderSuccess(orderRecord, 'download');
+      },
+      onError: (err) => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = origText;
+      },
+      onDismiss: () => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = origText;
+      }
+    });
+  });
+
+  // Customization Checkout Form Submission
+  document.getElementById('customCheckoutForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!currentPlan || !window.AlconsPayment) return;
+
+    const clientInfo = {
+      name: document.getElementById('custName').value.trim(),
+      email: document.getElementById('custEmail').value.trim(),
+      phone: document.getElementById('custPhone').value.trim()
+    };
+
+    const customizationData = {
+      plotDimensions: document.getElementById('custPlot').value.trim(),
+      vastuPreferences: document.getElementById('custVastu').value.trim(),
+      notes: document.getElementById('custNotes').value.trim()
+    };
+
+    const submitBtn = document.getElementById('custSubmitBtn');
+    submitBtn.disabled = true;
+    const origText = submitBtn.innerHTML;
+    submitBtn.innerHTML = 'Connecting Gateway...';
+
+    window.AlconsPayment.initiatePlanCustomizationPayment(currentPlan, clientInfo, customizationData, {
+      onSuccess: (orderRecord) => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = origText;
+        closeCustModal();
+        showOrderSuccess(orderRecord, 'customization');
+      },
+      onError: (err) => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = origText;
+      },
+      onDismiss: () => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = origText;
+      }
+    });
+  });
+
+  // Show Success Modal
+  function showOrderSuccess(orderRecord, type) {
+    lastCompletedOrder = orderRecord;
+    document.getElementById('successPaymentId').textContent = orderRecord.razorpay_payment_id || 'pay_VERIFIED';
+    document.getElementById('successItemTitle').textContent = orderRecord.plan_title;
+    document.getElementById('successAmount').textContent = `₹${orderRecord.amount}`;
+
+    const isDownload = type === 'download';
+    document.getElementById('successTitle').textContent = isDownload ? 'Blueprint Purchased Successfully!' : 'Customization Consultation Booked!';
+    document.getElementById('successSub').textContent = isDownload ? 'Your high-res architectural blueprint PDF is ready for construction.' : 'Our architectural engineering team will prepare your custom CAD revisions.';
+
+    document.getElementById('successDownloadSection').style.display = isDownload ? 'block' : 'none';
+    document.getElementById('successCustomSection').style.display = isDownload ? 'none' : 'block';
+
+    if (!isDownload) {
+      const waMsg = encodeURIComponent(`Hi ALCONS Studio, I have booked a plan customization for "${orderRecord.plan_title}" (Payment ID: ${orderRecord.razorpay_payment_id}). My name is ${orderRecord.client_name}.`);
+      document.getElementById('successWhatsAppBtn').href = `https://wa.me/916744002210?text=${waMsg}`;
+    }
+
+    successModal.classList.add('open');
+  }
+
+  // Download Again button on success modal
+  document.getElementById('successDownloadBtn').addEventListener('click', () => {
+    if (!currentPlan || !lastCompletedOrder || !window.AlconsPayment) return;
+    window.AlconsPayment.generateArchitecturalPDF(currentPlan, lastCompletedOrder.razorpay_payment_id, {
+      name: lastCompletedOrder.client_name,
+      email: lastCompletedOrder.client_email,
+      phone: lastCompletedOrder.client_phone
+    });
+  });
+
+  /* ── Custom data loader ── */
+  window.ALCONS_LOAD_PLANS=function(arr){
+    if(!Array.isArray(arr)||!arr.length){console.warn('[ALCONS] Pass a non-empty array.');return;}
+    dataset.length=0; dataset.push(...arr);
+    updateTypeCounts(); updateOrientBadges(); renderCards();
+  };
+
+  /* ── Init ── */
+  updateTypeCounts();
+  updateOrientBadges();
+  renderCards();
+
+})();
+</script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script type="module" src="assets/js/firebase-config.js"></script>
+<script src="assets/js/razorpay-handler.js"></script>
+<script src="assets/js/form-handler.js"></script>
+</body>
+</html>
