@@ -1,0 +1,59 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null && request.auth.token.admin == true;
+    }
+
+    function validLead() {
+      return request.resource.data.keys().hasOnly([
+              "full_name",
+              "email",
+              "phone",
+              "project_type",
+              "message",
+              "submitted_at",
+              "created_at"
+            ])
+            && request.resource.data.keys().hasAll(["full_name", "email", "created_at"])
+            && request.resource.data.full_name is string
+            && request.resource.data.full_name.size() >= 2
+            && request.resource.data.full_name.size() <= 120
+            && request.resource.data.email is string
+            && request.resource.data.email.matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")
+            && request.resource.data.email.size() <= 160
+            && (!("phone" in request.resource.data) || (request.resource.data.phone is string && request.resource.data.phone.size() <= 30))
+            && (!("project_type" in request.resource.data) || (request.resource.data.project_type is string && request.resource.data.project_type.size() <= 120))
+            && (!("message" in request.resource.data) || (request.resource.data.message is string && request.resource.data.message.size() <= 2000))
+            && (!("submitted_at" in request.resource.data) || (request.resource.data.submitted_at is string && request.resource.data.submitted_at.size() <= 40))
+            && request.resource.data.created_at == request.time;
+    }
+
+    match /leads/{leadId} {
+      allow create: if validLead();
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /orders/{orderId} {
+      allow create: if request.resource.data.keys().hasAll(["plan_id", "amount", "razorpay_payment_id", "status"])
+                    && request.resource.data.status == "PAID";
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /plans/{planId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /projects/{projectId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

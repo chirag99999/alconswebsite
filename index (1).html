@@ -3215,6 +3215,7 @@
       <div class="nav-pill" id="navPill"></div>
       <a href="services.html" class="hoverable" data-page-link="services">Services</a>
       <a href="portfolio.html" class="hoverable" data-page-link="portfolio">Portfolio</a>
+      <a href="plans-typology.html" class="hoverable" data-page-link="plans">Plans &amp; Typology</a>
       <a href="about.html" class="hoverable" data-page-link="about">About</a>
       <a href="pricing.html" class="hoverable" data-page-link="pricing">Pricing</a>
       <a href="contact.html" class="hoverable" data-page-link="contact">Contact</a>
@@ -3238,9 +3239,10 @@
         <li><a href="index.html" data-page-link="home"><span>01</span> Home</a></li>
         <li><a href="services.html" data-page-link="services"><span>02</span> Services</a></li>
         <li><a href="portfolio.html" data-page-link="portfolio"><span>03</span> Portfolio</a></li>
-        <li><a href="about.html" data-page-link="about"><span>04</span> About</a></li>
-        <li><a href="pricing.html" data-page-link="pricing"><span>05</span> Pricing</a></li>
-        <li><a href="contact.html" data-page-link="contact"><span>06</span> Contact</a></li>
+        <li><a href="plans-typology.html" data-page-link="plans"><span>04</span> Plans &amp; Typology</a></li>
+        <li><a href="about.html" data-page-link="about"><span>05</span> About</a></li>
+        <li><a href="pricing.html" data-page-link="pricing"><span>06</span> Pricing</a></li>
+        <li><a href="contact.html" data-page-link="contact"><span>07</span> Contact</a></li>
       </ul>
       <div class="nav-mobile-footer">
         <a href="contact.html" class="btn solid hoverable w-full">Book Consultation <span class="arrow"><svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></a>
@@ -4050,8 +4052,8 @@
             </svg></a>
         </div>
       </div>
-      <div class="foot-col"><span>Studio</span><a href="#about" class="hoverable">About</a><a href="#portfolio"
-          class="hoverable">Portfolio</a><a href="#pricing" class="hoverable">Pricing</a></div>
+      <div class="foot-col"><span>Studio</span><a href="about.html" class="hoverable">About</a><a href="portfolio.html"
+          class="hoverable">Portfolio</a><a href="plans-typology.html" class="hoverable">Plans &amp; Typology</a><a href="pricing.html" class="hoverable">Pricing</a></div>
       <div class="foot-col"><span>Services</span><a href="#services" class="hoverable">Architecture</a><a
           href="#services" class="hoverable">Interiors</a><a href="#services" class="hoverable">Construction</a></div>
       <div class="foot-col"><span>Connect</span><a href="#contact" class="hoverable">Instagram</a><a href="#contact"
@@ -4298,6 +4300,296 @@
       row.addEventListener('mouseenter', () => gsap.to(row.querySelector('.service-num'), { scale: 1.18, color: '#0FD8D4', duration: .35, ease: 'back.out(2)' }));
       row.addEventListener('mouseleave', () => gsap.to(row.querySelector('.service-num'), { scale: 1, color: '#6B6E70', duration: .35, ease: 'power2.out' }));
     });
+
+    /* ---------------- plans & typology explorer ---------------- */
+    (function () {
+      const page = document.querySelector('.plans-page');
+      if (!page) return;
+
+      const dataset = window.ALCONS_PLANS_DATA || [];
+      const gridContainer = page.querySelector('.plans-grid');
+      const typeTabs = page.querySelectorAll('.plan-type-tab');
+      const sizeChips = page.querySelectorAll('.plan-size-chip');
+      const orientationButtons = page.querySelectorAll('.orientation-option');
+      const searchInput = document.getElementById('planSearchInput');
+      const sortSelect = document.getElementById('planSortSelect');
+      const activeCountLabel = document.getElementById('plansActiveCount');
+
+      const modal = document.getElementById('planModal');
+      const modalTitle = document.getElementById('planModalTitle');
+      const modalCopy = document.getElementById('planModalCopy');
+      const modalType = document.getElementById('planModalType');
+      const modalImage = document.getElementById('planModalImage');
+      const modalFeatures = document.getElementById('planModalFeatures');
+      const modalSpecs = document.getElementById('planModalSpecs');
+
+      let activeType = 'Residential';
+      let activeOrientation = 'north';
+      let activeSize = 'all';
+      let searchQuery = '';
+      let activeSort = 'default';
+      let currentModalPlan = null;
+      let activeModalView = 'render';
+
+      let savedFavorites = new Set();
+      try {
+        const saved = localStorage.getItem('alcons_saved_plans');
+        if (saved) savedFavorites = new Set(JSON.parse(saved));
+      } catch (e) {}
+
+      function updateOrientationBadges() {
+        ['north', 'south', 'east', 'west'].forEach(dir => {
+          const count = dataset.filter(item => item.orientation === dir && item.type === activeType).length;
+          const badge = page.querySelector(`[data-orient-badge="${dir}"]`);
+          if (badge) badge.textContent = `${count} ${count === 1 ? 'Plan' : 'Plans'}`;
+        });
+      }
+
+      function renderGrid() {
+        let filtered = dataset.filter(item => {
+          const matchType = item.type === activeType;
+          const matchOrient = item.orientation === activeOrientation;
+          const matchSize = activeSize === 'all' || item.size === activeSize;
+          const matchQuery = !searchQuery ||
+            item.title.toLowerCase().includes(searchQuery) ||
+            item.note.toLowerCase().includes(searchQuery) ||
+            item.size.toLowerCase().includes(searchQuery) ||
+            (item.features && item.features.some(f => f.toLowerCase().includes(searchQuery)));
+          return matchType && matchOrient && matchSize && matchQuery;
+        });
+
+        if (filtered.length === 0 && activeSize !== 'all') {
+          activeSize = 'all';
+          sizeChips.forEach(chip => chip.classList.toggle('is-active', chip.dataset.sizeFilter === 'all'));
+          renderGrid();
+          return;
+        }
+
+        if (activeSort === 'sqft-asc') {
+          filtered.sort((a, b) => a.sqft - b.sqft);
+        } else if (activeSort === 'sqft-desc') {
+          filtered.sort((a, b) => b.sqft - a.sqft);
+        } else if (activeSort === 'bed-desc') {
+          filtered.sort((a, b) => b.bed - a.bed);
+        }
+
+        if (activeCountLabel) {
+          activeCountLabel.textContent = `Showing ${filtered.length} ${activeType} ${filtered.length === 1 ? 'Plan' : 'Plans'}`;
+        }
+
+        if (!gridContainer) return;
+        gridContainer.innerHTML = '';
+
+        if (filtered.length === 0) {
+          gridContainer.innerHTML = `
+            <div class="plans-empty-state" style="grid-column:1/-1;text-align:center;padding:48px 24px;background:rgba(255,255,255,0.4);border-radius:16px;">
+              <h3 style="font-size:20px;margin-bottom:8px;">No plans matching your current search criteria</h3>
+              <p style="color:var(--ink-soft);font-size:14px;">Try clearing filters or search terms to see available architectural plans.</p>
+            </div>`;
+          return;
+        }
+
+        filtered.forEach((item, index) => {
+          const isFav = savedFavorites.has(item.id);
+          const card = document.createElement('article');
+          card.className = 'plan-card hoverable';
+          card.dataset.planCard = '';
+          card.dataset.id = item.id;
+          card.dataset.size = item.size;
+          card.dataset.orientation = item.orientation;
+          card.dataset.type = item.type;
+
+          card.innerHTML = `
+            <button class="plan-favorite hoverable${isFav ? ' is-fav' : ''}" type="button" aria-label="Favorite ${item.title}" data-plan-fav="${item.id}">${isFav ? '♥' : '♡'}</button>
+            <div class="plan-thumb">
+              <img src="${item.image}" alt="${item.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:12px 12px 0 0;">
+              <span class="plan-badge-vastu">${item.vastu}</span>
+            </div>
+            <div class="plan-card-body">
+              <div class="plan-type-tag">${item.type} · ${item.facingText.replace(' Road', '')}</div>
+              <h3>${item.title}</h3>
+              <small>${item.size} — ${item.sqft} sqft</small>
+              <div class="plan-meta">
+                ${item.type === 'Residential' ? `<span>${item.bed} Bed</span><span>${item.bath} Bath</span><span>${item.floors} Floors</span>` : `<span>${item.sqft} sqft</span><span>${item.floors} Floors</span><span>${item.parking} Parking</span>`}
+              </div>
+              <div class="plan-card-footer">
+                <span class="plan-price-tag">${item.estBudget}</span>
+                <button class="plan-view-btn hoverable" type="button" data-plan-action="${item.id}">View Details</button>
+              </div>
+            </div>
+          `;
+
+          gridContainer.appendChild(card);
+
+          if (typeof gsap !== 'undefined') {
+            gsap.fromTo(card,
+              { opacity: 0, y: 16, scale: 0.98 },
+              { opacity: 1, y: 0, scale: 1, duration: 0.38, ease: 'power3.out', delay: Math.min(index * 0.04, 0.2) }
+            );
+          }
+        });
+
+        gridContainer.querySelectorAll('[data-plan-fav]').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const id = btn.dataset.planFav;
+            if (savedFavorites.has(id)) {
+              savedFavorites.delete(id);
+              btn.classList.remove('is-fav');
+              btn.textContent = '♡';
+            } else {
+              savedFavorites.add(id);
+              btn.classList.add('is-fav');
+              btn.textContent = '♥';
+            }
+            try {
+              localStorage.setItem('alcons_saved_plans', JSON.stringify(Array.from(savedFavorites)));
+            } catch (err) {}
+          });
+        });
+
+        gridContainer.querySelectorAll('[data-plan-action]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const id = btn.dataset.planAction;
+            const item = dataset.find(p => p.id === id);
+            if (item) openModal(item);
+          });
+        });
+      }
+
+      function openModal(item) {
+        if (!modal || !item) return;
+        currentModalPlan = item;
+        activeModalView = 'render';
+
+        if (modalTitle) modalTitle.textContent = item.title;
+        if (modalCopy) modalCopy.textContent = item.note;
+        if (modalType) modalType.textContent = `${item.type} Plan · ${item.facingText}`;
+
+        if (modalImage) {
+          modalImage.src = item.image;
+          modalImage.alt = item.title;
+        }
+
+        if (modalSpecs) {
+          modalSpecs.innerHTML = `
+            <div class="spec-item"><strong>${item.size}</strong><span>Plot Dimensions</span></div>
+            <div class="spec-item"><strong>${item.sqft} sqft</strong><span>Built-up Area</span></div>
+            <div class="spec-item"><strong>${item.type === 'Residential' ? item.bed + ' Beds / ' + item.bath + ' Baths' : item.floors + ' Floors'}</strong><span>Configuration</span></div>
+            <div class="spec-item"><strong>${item.vastu}</strong><span>Vastu Alignment</span></div>
+            <div class="spec-item"><strong>${item.estBudget}</strong><span>Est. Build Cost</span></div>
+          `;
+        }
+
+        if (modalFeatures) {
+          modalFeatures.innerHTML = item.features.map(f => `<span class="feature-tag">${f}</span>`).join('');
+        }
+
+        const viewToggle = document.getElementById('modalViewToggle');
+        if (viewToggle) {
+          viewToggle.textContent = 'Switch to Blueprint View';
+        }
+
+        const customBtn = document.getElementById('modalCustomizeBtn');
+        if (customBtn) {
+          customBtn.href = `contact.html?plan=${encodeURIComponent(item.title)}#contact`;
+        }
+
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+      }
+
+      function closeModal() {
+        if (!modal) return;
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+      }
+
+      typeTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          activeType = tab.dataset.planType || 'Residential';
+          typeTabs.forEach(item => item.classList.toggle('is-active', item === tab));
+          updateOrientationBadges();
+          renderGrid();
+        });
+      });
+
+      sizeChips.forEach(chip => {
+        chip.addEventListener('click', () => {
+          activeSize = chip.dataset.sizeFilter || 'all';
+          sizeChips.forEach(item => item.classList.toggle('is-active', item === chip));
+          renderGrid();
+        });
+      });
+
+      orientationButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          activeOrientation = button.dataset.orientationFilter || 'north';
+          orientationButtons.forEach(item => item.classList.toggle('is-active', item === button));
+          renderGrid();
+        });
+      });
+
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          searchQuery = e.target.value.trim().toLowerCase();
+          renderGrid();
+        });
+      }
+
+      if (sortSelect) {
+        sortSelect.addEventListener('change', (e) => {
+          activeSort = e.target.value;
+          renderGrid();
+        });
+      }
+
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal || e.target.closest('.plan-modal-close')) closeModal();
+        });
+        window.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') closeModal();
+        });
+
+        const viewToggle = document.getElementById('modalViewToggle');
+        if (viewToggle) {
+          viewToggle.addEventListener('click', () => {
+            if (!currentModalPlan || !modalImage) return;
+            if (activeModalView === 'render') {
+              activeModalView = 'blueprint';
+              modalImage.src = currentModalPlan.blueprintImage;
+              viewToggle.textContent = 'Switch to Exterior View';
+            } else {
+              activeModalView = 'render';
+              modalImage.src = currentModalPlan.image;
+              viewToggle.textContent = 'Switch to Blueprint View';
+            }
+          });
+        }
+
+        const downloadBtn = document.getElementById('modalDownloadBtn');
+        if (downloadBtn) {
+          downloadBtn.addEventListener('click', () => {
+            if (!currentModalPlan) return;
+            alert(`Downloading sample blueprint package for: ${currentModalPlan.title}\nFormat: High-Res Vector PDF + DWG Layout Specs`);
+          });
+        }
+      }
+
+      window.ALCONS_LOAD_CUSTOM_DATA = function (customDataArray) {
+        if (Array.isArray(customDataArray)) {
+          window.ALCONS_PLANS_DATA = customDataArray;
+          dataset.length = 0;
+          dataset.push(...customDataArray);
+          updateOrientationBadges();
+          renderGrid();
+        }
+      };
+
+      updateOrientationBadges();
+      renderGrid();
+    })();
 
     /* ---------------- pinned sketch scroll ---------------- */
     (function () {
@@ -4875,6 +5167,8 @@
       });
     });
   </script>
+  <script type="module" src="assets/js/firebase-config.js"></script>
+  <script src="assets/js/form-handler.js"></script>
 </body>
 
 </html>
